@@ -1,7 +1,7 @@
 {
   "name": "unplugin-docubook",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Write with MDX — works with pretty much any JS framework: Vite, React, Vue, Svelte, you name it",
   "license": "MIT",
   "keywords": [
