@@ -1,14 +1,9 @@
 import React, { type ComponentProps } from 'react'
-import { Copy } from './Copy'
+import Copy from './Copy'
 
 type PreProps = ComponentProps<'pre'> & {
     raw?: string
     'data-title'?: string
-}
-
-function getLanguage(className: string = ''): string {
-    const match = className.match(/language-(\w+)/)
-    return match ? match[1] : 'default'
 }
 
 export function Pre({ children, raw, ...rest }: PreProps) {

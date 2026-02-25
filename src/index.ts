@@ -13,7 +13,7 @@ export const unpluginFactory: UnpluginFactory<Options | undefined> = (
         return /\.mdx?$/.test(id)
     },
 
-    transform(code, id) {
+    transform(code, _id) {
         const result = transformMdx(code, options)
         if (!result.hasTransformed) return
         return result.code

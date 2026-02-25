@@ -3,9 +3,7 @@ import { addVitePlugin, addWebpackPlugin, defineNuxtModule } from '@nuxt/kit'
 import vite from './vite'
 import webpack from './webpack'
 
-export interface ModuleOptions extends Options { }
-
-export default defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule<Options>({
     meta: {
         name: 'nuxt-unplugin-docubook',
         configKey: 'docubookMdx',

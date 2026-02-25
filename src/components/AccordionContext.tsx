@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext } from 'react'
+import { createContext } from 'react'
 
 /**
  * Context that tells child Accordion components they are inside a group.

@@ -142,7 +142,8 @@ export function Files({ children }: { children: React.ReactNode }) {
             <div className="p-2">
                 {Children.map(children, (child, index) => {
                     if (isValidElement(child)) {
-                        return cloneElement(child, { key: index } as any)
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        return cloneElement(child as any, { key: index })
                     }
                     return null
                 })}

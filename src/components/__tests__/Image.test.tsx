@@ -1,14 +1,17 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
+import React from 'react'
 import { DocuImage } from '../Image'
 import { DocuBookProvider } from '../context'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mockImage = ({ src, alt, ...props }: any) => (
   <img src={src} alt={alt} {...props} />
 )
 
 const renderWithProvider = (ui: React.ReactElement) => {
   return render(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <DocuBookProvider value={{ Link: 'a' as any, Image: mockImage }}>
       {ui}
     </DocuBookProvider>

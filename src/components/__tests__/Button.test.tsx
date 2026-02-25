@@ -1,14 +1,17 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Button } from '../Button'
+import React from 'react'
+import Button from '../Button'
 import { DocuBookProvider } from '../context'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mockLink = ({ href, children, ...props }: any) => (
   <a href={href} {...props}>{children}</a>
 )
 
 const renderWithProvider = (ui: React.ReactElement) => {
   return render(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <DocuBookProvider value={{ Link: mockLink, Image: 'img' as any }}>
       {ui}
     </DocuBookProvider>
@@ -50,20 +53,20 @@ describe('Button', () => {
   it('applies primary variation by default', () => {
     renderWithProvider(<Button href="/test" />)
     const link = screen.getByRole('link')
-    expect(link.className).toContain('bg-blue-600')
+    expect(link.className).toContain('bg-primary')
   })
 
   it('applies accent variation', () => {
     renderWithProvider(<Button href="/test" variation="accent" />)
     const link = screen.getByRole('link')
-    expect(link.className).toContain('bg-purple-600')
+    expect(link.className).toContain('bg-accent')
   })
 
   it('applies outline variation', () => {
     renderWithProvider(<Button href="/test" variation="outline" />)
     const link = screen.getByRole('link')
     expect(link.className).toContain('border')
-    expect(link.className).toContain('text-blue-600')
+    expect(link.className).toContain('text-accent')
   })
 
   it('opens external links with rel="noopener noreferrer"', () => {

@@ -1,64 +1,58 @@
-'use client'
+"use client";
 
-import React, { useState, useContext } from 'react'
-import clsx from 'clsx'
-import { AccordionGroupContext } from './AccordionContext'
+import { ReactNode, useState, useContext } from 'react';
+import { ChevronRight } from 'lucide-react';
+import * as Icons from "lucide-react";
+import clsx from 'clsx';
+import { AccordionGroupContext } from './AccordionContext';
 
-interface AccordionProps {
-    title: string
-    children?: React.ReactNode
-    defaultOpen?: boolean
-    icon?: string
-}
+type AccordionProps = {
+    title: string;
+    children?: ReactNode;
+    defaultOpen?: boolean;
+    icon?: keyof typeof Icons;
+};
 
-export function Accordion({
+const Accordion: React.FC<AccordionProps> = ({
     title,
     children,
     defaultOpen = false,
-}: AccordionProps) {
-    const groupContext = useContext(AccordionGroupContext)
-    const isInGroup = groupContext?.inGroup === true
-    const [isOpen, setIsOpen] = useState(defaultOpen)
+    icon,
+}: AccordionProps) => {
+    const groupContext = useContext(AccordionGroupContext);
+    const isInGroup = groupContext?.inGroup === true;
+    const [isOpen, setIsOpen] = useState(defaultOpen);
+    const Icon = icon ? (Icons[icon] as React.FC<{ className?: string }>) : null;
 
     return (
         <div
             className={clsx(
-                !isInGroup && 'border rounded-lg shadow-sm',
-                isInGroup && 'border-b last:border-b-0 border-gray-200 dark:border-gray-700',
+                !isInGroup && "border rounded-lg shadow-sm",
+                isInGroup && "border-b last:border-b-0 border-border"
             )}
         >
             <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 w-full px-4 py-3 transition-colors bg-gray-100/40 dark:bg-gray-800/20 hover:bg-gray-100/70 dark:hover:bg-gray-800/70 cursor-pointer text-start"
+                className="flex items-center gap-2 w-full px-4 py-3 transition-colors bg-muted/40 dark:bg-muted/20 hover:bg-muted/70 dark:hover:bg-muted/70 cursor-pointer text-start"
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                <ChevronRight
                     className={clsx(
-                        'text-gray-500 transition-transform duration-200 flex-shrink-0',
-                        isOpen && 'rotate-90',
+                        "w-4 h-4 text-muted-foreground transition-transform duration-200 flex-shrink-0",
+                        isOpen && "rotate-90"
                     )}
-                >
-                    <path d="m9 18 6-6-6-6" />
-                </svg>
-                <h3 className="font-medium text-base m-0">{title}</h3>
+                />
+                {Icon && <Icon className="text-foreground w-4 h-4 flex-shrink-0" />}
+                <h3 className="font-medium text-base text-foreground !m-0">{title}</h3>
             </button>
 
             {isOpen && (
-                <div className="px-4 py-3 dark:bg-gray-800/10 bg-gray-100/15">
+                <div className="px-4 py-3 dark:bg-muted/10 bg-muted/15">
                     {children}
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default Accordion
+export default Accordion;

@@ -12,7 +12,7 @@ export interface DocuBookLinkProps {
     className?: string
     target?: string
     rel?: string
-    [key: string]: any
+    [key: string]: unknown
 }
 
 export interface DocuBookImageProps {
@@ -21,7 +21,7 @@ export interface DocuBookImageProps {
     width?: number | string
     height?: number | string
     className?: string
-    [key: string]: any
+    [key: string]: unknown
 }
 
 export interface DocuBookConfig {

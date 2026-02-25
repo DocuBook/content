@@ -15,9 +15,9 @@ import { DocuBookProvider } from '../components/context'
  * }
  */
 export function NextAdapter({ children }: { children: React.ReactNode }) {
-    // Dynamic imports to avoid hard dependency on next
-    // These will be resolved at build time by the consumer's bundler
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const NextLink = require('next/link').default
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const NextImage = require('next/image').default
 
     return (
