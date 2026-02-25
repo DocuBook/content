@@ -16,6 +16,3 @@ Thumbs.db
 # Logs
 *.log
 
-# Lock files (if standalone repo — remove if monorepo)
-# package-lock.json
-# bun.lockb
