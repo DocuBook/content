@@ -1,7 +1,7 @@
 {
   "name": "unplugin-docubook",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Write with MDX — works with pretty much any JS framework: Vite, React, Vue, Svelte, you name it",
   "license": "MIT",
   "keywords": [
@@ -18,46 +18,104 @@
   "repository": "github:DocuBook/content",
   "author": "wildan.nrs",
   "exports": {
-    ".": "./dist/index.js",
-    "./bun": "./dist/bun.js",
-    "./astro": "./dist/astro.js",
-    "./esbuild": "./dist/esbuild.js",
-    "./farm": "./dist/farm.js",
-    "./rolldown": "./dist/rolldown.js",
-    "./nuxt": "./dist/nuxt.js",
-    "./rollup": "./dist/rollup.js",
-    "./rspack": "./dist/rspack.js",
-    "./types": "./dist/types.js",
-    "./vite": "./dist/vite.js",
-    "./webpack": "./dist/webpack.js",
-    "./components": "./dist/components/index.js",
-    "./components/*": "./dist/components/*.js",
-    "./components/react": "./dist/components/react/index.js",
-    "./components/vue": "./dist/components/vue/index.js",
-    "./components/svelte": "./dist/components/svelte/index.js",
-    "./adapters/next": "./dist/adapters/next.js",
-    "./adapters/react": "./dist/adapters/react.js",
-    "./adapters/vue": "./dist/adapters/vue.js",
-    "./adapters/svelte": "./dist/adapters/svelte.js",
-    "./framework": "./dist/framework/index.js",
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./next": {
+      "import": "./dist/next.js",
+      "require": "./dist/next.cjs"
+    },
+    "./bun": {
+      "import": "./dist/bun.js",
+      "require": "./dist/bun.cjs"
+    },
+    "./astro": {
+      "import": "./dist/astro.js",
+      "require": "./dist/astro.cjs"
+    },
+    "./esbuild": {
+      "import": "./dist/esbuild.js",
+      "require": "./dist/esbuild.cjs"
+    },
+    "./farm": {
+      "import": "./dist/farm.js",
+      "require": "./dist/farm.cjs"
+    },
+    "./rolldown": {
+      "import": "./dist/rolldown.js",
+      "require": "./dist/rolldown.cjs"
+    },
+    "./nuxt": {
+      "import": "./dist/nuxt.js",
+      "require": "./dist/nuxt.cjs"
+    },
+    "./rollup": {
+      "import": "./dist/rollup.js",
+      "require": "./dist/rollup.cjs"
+    },
+    "./rspack": {
+      "import": "./dist/rspack.js",
+      "require": "./dist/rspack.cjs"
+    },
+    "./types": {
+      "import": "./dist/types.js",
+      "require": "./dist/types.cjs"
+    },
+    "./vite": {
+      "import": "./dist/vite.js",
+      "require": "./dist/vite.cjs"
+    },
+    "./webpack": {
+      "import": "./dist/webpack.js",
+      "require": "./dist/webpack.cjs"
+    },
+    "./components": {
+      "import": "./dist/components/index.js",
+      "require": "./dist/components/index.cjs"
+    },
+    "./components/react": {
+      "import": "./dist/components/index.js",
+      "require": "./dist/components/index.cjs"
+    },
+    "./components/vue": {
+      "import": "./dist/components/index.js",
+      "require": "./dist/components/index.cjs"
+    },
+    "./components/svelte": {
+      "import": "./dist/components/index.js",
+      "require": "./dist/components/index.cjs"
+    },
+    "./adapters/next": {
+      "import": "./dist/adapters/next.js",
+      "require": "./dist/adapters/next.cjs"
+    },
+    "./adapters/react": {
+      "import": "./dist/adapters/react.js",
+      "require": "./dist/adapters/react.cjs"
+    },
+    "./adapters/vue": {
+      "import": "./dist/adapters/vue.js",
+      "require": "./dist/adapters/vue.cjs"
+    },
+    "./adapters/svelte": {
+      "import": "./dist/adapters/svelte.js",
+      "require": "./dist/adapters/svelte.cjs"
+    },
+    "./framework": {
+      "import": "./dist/framework/index.js",
+      "require": "./dist/framework/index.cjs"
+    },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./*"
-      ]
-    }
-  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsdown",
+    "build": "tsup",
     "dev": "tsdown -w",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
@@ -143,6 +201,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tsdown": "^0.12.0",
+    "tsup": "^8.5.1",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
