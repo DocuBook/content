@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import { Card } from '../Card'
-import { CardGroup } from '../CardGroup'
-import { DocuBookProvider } from '../context'
+import { Card } from '../react/Card'
+import { CardGroup } from '../react/CardGroup'
+import { DocuBookProvider } from '../react/context'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mockLink = ({ href, children, ...props }: any) => (

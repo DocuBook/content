@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { DocuBookProvider } from '../components/context'
+import { DocuBookProvider } from '../components/react/context'
 
 /**
  * Next.js adapter — wraps children with DocuBookProvider

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { DocuBookProvider } from '../components/context'
+import { DocuBookProvider } from '../components/react/context'
 
 /**
  * Default React adapter — uses native HTML elements for Link/Image.

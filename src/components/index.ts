@@ -1,25 +1,22 @@
 // ──────────────────────────────────────────────
-// Context / Provider
+// React Components (default for backwards compatibility)
 // ──────────────────────────────────────────────
-export { DocuBookProvider, useDocuBook } from './context'
-export type { DocuBookConfig, DocuBookLinkProps, DocuBookImageProps } from './context'
+export { DocuBookProvider, useDocuBook } from './react/context'
+export type { DocuBookConfig, DocuBookLinkProps, DocuBookImageProps } from './react/context'
 
-// ──────────────────────────────────────────────
-// Components
-// ──────────────────────────────────────────────
-export { Note } from './Note'
-export { Card } from './Card'
-export { CardGroup } from './CardGroup'
-export { default as Accordion } from './Accordion'
-export { default as AccordionGroup } from './AccordionGroup'
-export { Stepper, StepperItem } from './Stepper'
-export { Files, Folder, File } from './FileTree'
-export { Kbd } from './Kbd'
-export { Tooltip } from './Tooltip'
-export { Youtube } from './Youtube'
-export { default as Button } from './Button'
-export { DocuLink } from './Link'
-export { DocuImage } from './Image'
-export { Release, Changes } from './Release'
-export { Pre } from './Pre'
-export { default as Copy } from './Copy'
+export { Note } from './react/Note'
+export { Card } from './react/Card'
+export { CardGroup } from './react/CardGroup'
+export { default as Accordion } from './react/Accordion'
+export { default as AccordionGroup } from './react/AccordionGroup'
+export { Stepper, StepperItem } from './react/Stepper'
+export { Files, Folder, File } from './react/FileTree'
+export { Kbd } from './react/Kbd'
+export { Tooltip } from './react/Tooltip'
+export { Youtube } from './react/Youtube'
+export { default as Button } from './react/Button'
+export { DocuLink } from './react/Link'
+export { DocuImage } from './react/Image'
+export { Release, Changes } from './react/Release'
+export { Pre } from './react/Pre'
+export { default as Copy } from './react/Copy'

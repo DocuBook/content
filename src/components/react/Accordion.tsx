@@ -1,5 +1,3 @@
-"use client";
-
 import { ReactNode, useState, useContext } from 'react';
 import { ChevronRight } from 'lucide-react';
 import * as Icons from "lucide-react";

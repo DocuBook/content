@@ -1,4 +1,13 @@
+export type Framework = 'react' | 'vue' | 'svelte'
+
 export interface Options {
+    /**
+     * Target framework for auto-imports.
+     * Determines which component path to use in generated imports.
+     * @default 'react'
+     */
+    framework?: Framework
+
     /**
      * Glob patterns to include for MDX transformation.
      * @default ['**\/*.mdx', '**\/*.md']

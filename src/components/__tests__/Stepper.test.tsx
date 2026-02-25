@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Stepper, StepperItem } from '../Stepper'
+import { Stepper, StepperItem } from '../react/Stepper'
 
 describe('Stepper', () => {
   it('renders children', () => {

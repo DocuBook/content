@@ -1,120 +1,49 @@
+import type { Framework } from '../types'
+
 export interface ComponentMeta {
-    /** Named exports to import from this module */
     exports: string[]
-    /** Sub-path under the import source */
     path: string
 }
 
-/**
- * Registry of all DocuBook MDX components.
- * Maps JSX tag names detected in MDX source to their import metadata.
- */
-export const COMPONENT_REGISTRY: Record<string, ComponentMeta> = {
-    // --- Standalone components ---
-    Note: {
-        exports: ['Note'],
-        path: '/Note',
-    },
-    Card: {
-        exports: ['Card'],
-        path: '/Card',
-    },
-    CardGroup: {
-        exports: ['CardGroup'],
-        path: '/CardGroup',
-    },
-    Accordion: {
-        exports: ['Accordion'],
-        path: '/Accordion',
-    },
-    AccordionGroup: {
-        exports: ['AccordionGroup'],
-        path: '/AccordionGroup',
-    },
-    Stepper: {
-        exports: ['Stepper'],
-        path: '/Stepper',
-    },
-    StepperItem: {
-        exports: ['StepperItem'],
-        path: '/Stepper',
-    },
-    Kbd: {
-        exports: ['Kbd'],
-        path: '/Kbd',
-    },
-    Tooltip: {
-        exports: ['Tooltip'],
-        path: '/Tooltip',
-    },
-    Youtube: {
-        exports: ['Youtube'],
-        path: '/Youtube',
-    },
-    Button: {
-        exports: ['Button'],
-        path: '/Button',
-    },
-
-    // --- Link & Image (use adapter context) ---
-    DocuLink: {
-        exports: ['DocuLink'],
-        path: '/Link',
-    },
-    DocuImage: {
-        exports: ['DocuImage'],
-        path: '/Image',
-    },
-
-    // --- FileTree compound ---
-    Files: {
-        exports: ['Files'],
-        path: '/FileTree',
-    },
-    Folder: {
-        exports: ['Folder'],
-        path: '/FileTree',
-    },
-    File: {
-        exports: ['File'],
-        path: '/FileTree',
-    },
-
-    // --- Release compound ---
-    Release: {
-        exports: ['Release'],
-        path: '/Release',
-    },
-    Changes: {
-        exports: ['Changes'],
-        path: '/Release',
-    },
-
-    // --- Code block ---
-    Pre: {
-        exports: ['Pre'],
-        path: '/Pre',
-    },
-    Copy: {
-        exports: ['Copy'],
-        path: '/Copy',
-    },
-
-    // --- Provider ---
-    DocuBookProvider: {
-        exports: ['DocuBookProvider'],
-        path: '/context',
-    },
+const FRAMEWORK_PATHS: Record<Framework, string> = {
+    react: '/react',
+    vue: '/vue',
+    svelte: '/svelte',
 }
 
-/**
- * Build a regex that matches any of the registered component names
- * used as JSX opening tags in MDX content.
- *
- * Matches: `<Note`, `<CardGroup`, `<Files` etc.
- */
-export function buildComponentDetectionRegex(): RegExp {
-    const names = Object.keys(COMPONENT_REGISTRY)
-    // Match opening JSX tag: `<ComponentName` followed by whitespace, `/`, or `>`
+function createRegistry(framework: Framework): Record<string, ComponentMeta> {
+    const basePath = FRAMEWORK_PATHS[framework]
+
+    return {
+        Note: { exports: ['Note'], path: `${basePath}/Note` },
+        Card: { exports: ['Card'], path: `${basePath}/Card` },
+        CardGroup: { exports: ['CardGroup'], path: `${basePath}/CardGroup` },
+        Accordion: { exports: ['Accordion'], path: `${basePath}/Accordion` },
+        AccordionGroup: { exports: ['AccordionGroup'], path: `${basePath}/AccordionGroup` },
+        Stepper: { exports: ['Stepper', 'StepperItem'], path: `${basePath}/Stepper` },
+        Kbd: { exports: ['Kbd'], path: `${basePath}/Kbd` },
+        Tooltip: { exports: ['Tooltip'], path: `${basePath}/Tooltip` },
+        Youtube: { exports: ['Youtube'], path: `${basePath}/Youtube` },
+        Button: { exports: ['Button'], path: `${basePath}/Button` },
+        DocuLink: { exports: ['DocuLink'], path: `${basePath}/Link` },
+        DocuImage: { exports: ['DocuImage'], path: `${basePath}/Image` },
+        Files: { exports: ['Files'], path: `${basePath}/FileTree` },
+        Folder: { exports: ['Folder'], path: `${basePath}/FileTree` },
+        File: { exports: ['File'], path: `${basePath}/FileTree` },
+        Release: { exports: ['Release'], path: `${basePath}/Release` },
+        Changes: { exports: ['Changes'], path: `${basePath}/Release` },
+        Pre: { exports: ['Pre'], path: `${basePath}/Pre` },
+        Copy: { exports: ['Copy'], path: `${basePath}/Copy` },
+        DocuBookProvider: { exports: ['DocuBookProvider'], path: `${basePath}/context` },
+    }
+}
+
+export function getComponentRegistry(framework: Framework = 'react'): Record<string, ComponentMeta> {
+    return createRegistry(framework)
+}
+
+export function buildComponentDetectionRegex(framework: Framework = 'react'): RegExp {
+    const registry = getComponentRegistry(framework)
+    const names = Object.keys(registry)
     return new RegExp(`<(${names.join('|')})(?=[\\s/>])`, 'g')
 }

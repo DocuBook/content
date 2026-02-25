@@ -1,4 +1,5 @@
 import React from 'react'
+import { Plus, Wrench, Zap, AlertTriangle, XCircle } from 'lucide-react'
 import clsx from 'clsx'
 
 interface ReleaseProps {
@@ -48,48 +49,39 @@ const typeConfig = {
     added: {
         label: 'Added',
         className: 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300',
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M8 12h8" /><path d="M12 8v8" /></svg>
-        ),
+        icon: Plus,
     },
     fixed: {
         label: 'Fixed',
         className: 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-300',
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg>
-        ),
+        icon: Wrench,
     },
     improved: {
         label: 'Improved',
         className: 'bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300',
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-        ),
+        icon: Zap,
     },
     deprecated: {
         label: 'Deprecated',
         className: 'bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300',
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
-        ),
+        icon: AlertTriangle,
     },
     removed: {
         label: 'Removed',
         className: 'bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300',
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="m15 9-6 6" /><path d="m9 9 6 6" /></svg>
-        ),
+        icon: XCircle,
     },
 } as const
 
 export function Changes({ type, children }: ChangesProps) {
     const config = typeConfig[type] || typeConfig.added
+    const Icon = config.icon
 
     return (
         <div className="space-y-3 mb-8">
             <div className="flex items-center gap-2">
                 <div className={clsx('px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1.5', config.className)}>
-                    {config.icon}
+                    <Icon className="w-3.5 h-3.5" />
                     <span>{config.label}</span>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Kbd } from '../Kbd'
+import { Kbd } from '../react/Kbd'
 
 describe('Kbd', () => {
   it('renders with show prop (mac)', () => {

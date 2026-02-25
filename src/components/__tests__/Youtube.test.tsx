@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Youtube } from '../Youtube'
+import { Youtube } from '../react/Youtube'
 
 describe('Youtube', () => {
   it('renders iframe with videoId', () => {

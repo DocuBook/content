@@ -8,7 +8,7 @@ import React, { createContext, useContext } from 'react'
 
 export interface DocuBookLinkProps {
     href: string
-    children: React.ReactNode
+    children?: React.ReactNode
     className?: string
     target?: string
     rel?: string

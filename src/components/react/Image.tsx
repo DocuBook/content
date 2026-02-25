@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { Search, X } from 'lucide-react'
 import { useDocuBook } from './context'
 
 interface DocuImageProps {
@@ -51,12 +52,7 @@ export function DocuImage({
                 aria-label="Zoom image"
             >
                 <span className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-md">
-                        <circle cx="11" cy="11" r="8" />
-                        <line x1="21" x2="16.65" y1="21" y2="16.65" />
-                        <line x1="11" x2="11" y1="8" y2="14" />
-                        <line x1="8" x2="14" y1="11" y2="11" />
-                    </svg>
+                    <Search className="w-8 h-8 text-white drop-shadow-md" />
                 </span>
                 <Image
                     src={src}
@@ -80,10 +76,7 @@ export function DocuImage({
                             setIsOpen(false)
                         }}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M18 6 6 18" />
-                            <path d="m6 6 12 12" />
-                        </svg>
+                        <X className="w-6 h-6" />
                     </button>
 
                     <div className="relative max-w-7xl w-full h-full flex items-center justify-center">

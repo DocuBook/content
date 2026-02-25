@@ -1,22 +1,18 @@
-import type { Options } from '../types'
-import {
-    COMPONENT_REGISTRY,
-    buildComponentDetectionRegex,
-} from './registry'
+import type { Options, Framework } from '../types'
+import { getComponentRegistry, buildComponentDetectionRegex } from './registry'
 
 const DEFAULT_IMPORT_SOURCE = 'unplugin-docubook/components'
+const DEFAULT_FRAMEWORK: Framework = 'react'
 
-/**
- * Detect which DocuBook components are used in the given MDX/MD source.
- */
-export function detectComponents(code: string): string[] {
-    const regex = buildComponentDetectionRegex()
+export function detectComponents(code: string, framework: Framework = DEFAULT_FRAMEWORK): string[] {
+    const regex = buildComponentDetectionRegex(framework)
+    const registry = getComponentRegistry(framework)
     const found = new Set<string>()
     let match: RegExpExecArray | null
 
     while ((match = regex.exec(code)) !== null) {
         const name = match[1]
-        if (name && COMPONENT_REGISTRY[name]) {
+        if (name && registry[name]) {
             found.add(name)
         }
     }
@@ -24,19 +20,16 @@ export function detectComponents(code: string): string[] {
     return Array.from(found)
 }
 
-/**
- * Generate import statements for the detected components.
- * Groups imports by source path to avoid duplicate imports.
- */
 export function generateImports(
     componentNames: string[],
     importSource: string,
+    framework: Framework = DEFAULT_FRAMEWORK,
 ): string {
-    // Group by import path to combine imports from the same module
+    const registry = getComponentRegistry(framework)
     const pathToExports = new Map<string, Set<string>>()
 
     for (const name of componentNames) {
-        const meta = COMPONENT_REGISTRY[name]
+        const meta = registry[name]
         if (!meta) continue
 
         const fullPath = `${importSource}${meta.path}`
@@ -57,23 +50,19 @@ export function generateImports(
     return lines.join('\n')
 }
 
-/**
- * Transform MDX source code by prepending auto-imports for detected
- * DocuBook components. If no components are detected, returns the
- * original code untouched.
- */
 export function transformMdx(
     code: string,
     options: Options = {},
 ): { code: string; hasTransformed: boolean } {
-    const usedComponents = detectComponents(code)
+    const framework = options.framework ?? DEFAULT_FRAMEWORK
+    const usedComponents = detectComponents(code, framework)
 
     if (usedComponents.length === 0) {
         return { code, hasTransformed: false }
     }
 
     const importSource = options.importSource ?? DEFAULT_IMPORT_SOURCE
-    const importStatements = generateImports(usedComponents, importSource)
+    const importStatements = generateImports(usedComponents, importSource, framework)
 
     return {
         code: `${importStatements}\n\n${code}`,

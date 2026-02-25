@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { Check, Copy as CopyIcon } from "lucide-react";
 

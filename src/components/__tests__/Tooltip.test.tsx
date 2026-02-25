@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { Tooltip } from '../Tooltip'
+import { Tooltip } from '../react/Tooltip'
 
 describe('Tooltip', () => {
   it('renders text', () => {

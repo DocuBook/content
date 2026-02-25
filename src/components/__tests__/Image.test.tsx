@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import React from 'react'
-import { DocuImage } from '../Image'
-import { DocuBookProvider } from '../context'
+import { DocuImage } from '../react/Image'
+import { DocuBookProvider } from '../react/context'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mockImage = ({ src, alt, ...props }: any) => (

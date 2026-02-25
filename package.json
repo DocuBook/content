@@ -1,8 +1,8 @@
 {
   "name": "unplugin-docubook",
   "type": "module",
-  "version": "0.1.0",
-  "description": "Build-time MDX component auto-import plugin for DocuBook — works with Vite, Rollup, webpack, esbuild, and more.",
+  "version": "1.0.0",
+  "description": "Write with MDX — works with pretty much any JS framework: Vite, React, Vue, Svelte, you name it",
   "license": "MIT",
   "keywords": [
     "unplugin",
@@ -32,8 +32,14 @@
     "./webpack": "./dist/webpack.js",
     "./components": "./dist/components/index.js",
     "./components/*": "./dist/components/*.js",
+    "./components/react": "./dist/components/react/index.js",
+    "./components/vue": "./dist/components/vue/index.js",
+    "./components/svelte": "./dist/components/svelte/index.js",
     "./adapters/next": "./dist/adapters/next.js",
     "./adapters/react": "./dist/adapters/react.js",
+    "./adapters/vue": "./dist/adapters/vue.js",
+    "./adapters/svelte": "./dist/adapters/svelte.js",
+    "./framework": "./dist/framework/index.js",
     "./package.json": "./package.json"
   },
   "main": "./dist/index.js",
@@ -64,10 +70,13 @@
     "clsx": ">=2",
     "esbuild": "*",
     "lucide-react": ">=0.300",
+    "lucide-vue-next": ">=0.300",
     "react": ">=18",
     "react-dom": ">=18",
     "rollup": "^3 || ^4",
+    "svelte": ">=4",
     "vite": ">=3",
+    "vue": ">=3",
     "webpack": "^4 || ^5"
   },
   "peerDependenciesMeta": {
@@ -89,6 +98,12 @@
     "vite": {
       "optional": true
     },
+    "vue": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    },
     "webpack": {
       "optional": true
     },
@@ -99,6 +114,9 @@
       "optional": true
     },
     "lucide-react": {
+      "optional": true
+    },
+    "lucide-vue-next": {
       "optional": true
     },
     "clsx": {

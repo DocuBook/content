@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Pre } from '../Pre'
+import { Pre } from '../react/Pre'
 
 describe('Pre', () => {
   it('renders children', () => {
