@@ -1,175 +1,162 @@
-# AGENTS.md - Agentic Coding Guidelines
+# AGENTS.md
 
-This document provides guidelines for agentic coding agents operating in this repository.
+Guide for AI coding agents working in this repository.
 
 ## Project Overview
 
-- **Name**: unplugin-docubook
-- **Type**: TypeScript/JavaScript unplugin for MDX content transformation
-- **Package Manager**: Yarn 4 (with `packageManager` field in package.json)
-- **Module System**: ESM with dual CJS/ESM exports
+`unplugin-docubook` is an unplugin-based library that auto-imports MDX components at build time.
+Components are implemented in React (primary, Radix UI), Vue, and Svelte. The package is ESM-first
+(`"type": "module"`), built with tsup, and uses Yarn 4 (node-modules linker).
 
-## Build/Lint/Test Commands
+## Commands
 
-### Installation
 ```bash
-yarn install
+yarn build          # Production build via tsup (dual CJS+ESM)
+yarn dev            # Dev watch mode via tsdown
+yarn lint           # ESLint (flat config, TS + React)
+yarn test           # Run all tests: vitest run
+yarn test -- src/components/__tests__/Button.test.tsx   # Single test file
 ```
 
-### Building
-```bash
-yarn build        # Build using tsup (production)
-yarn dev          # Watch mode using tsdown
+## Project Structure
+
+```
+src/
+├── index.ts                     # Main unplugin factory entry
+├── types.ts                     # Plugin Options type
+├── core/
+│   ├── registry.ts              # Component registry + detection regex
+│   └── transform.ts             # MDX transform (detect, import, inject)
+├── adapters/                    # Framework-specific adapters (next, react, vue, svelte)
+├── components/
+│   ├── index.ts                 # Barrel re-export of React components
+│   ├── theme.css                # CSS custom properties
+│   ├── shared/                  # Cross-framework utilities
+│   │   ├── theme.ts             # componentStyles, themeTokens
+│   │   ├── types.ts             # Shared prop interfaces
+│   │   └── utils.ts             # cn() (class merge) + cv() (variants)
+│   ├── react/
+│   │   ├── context.tsx          # DocuBookProvider, useDocuBook hook
+│   │   ├── content/             # MDX-oriented components (Accordion, Button, Card, etc.)
+│   │   └── ui/                  # Radix UI primitive wrappers
+│   ├── vue/                     # Vue SFC components
+│   └── svelte/                  # Svelte components
+├── framework/                   # Runtime framework detection
+└── [vite|webpack|rollup|...].ts # Per-bundler plugin entries
 ```
 
-### Linting
-```bash
-yarn lint         # Run ESLint on entire codebase
-```
+## Code Style
 
-### Testing
-```bash
-yarn test         # Run all tests with Vitest (run mode)
-yarn test:watch   # Run tests in watch mode (use: vitest)
-```
+### Formatting
 
-#### Running a Single Test
-```bash
-vitest run src/components/__tests__/Button.test.tsx    # Single file
-vitest run --reporter=verbose src/components/__tests__/Button.test.tsx  # Verbose output
-vitest run -t "renders with text"                      # Single test by name
-```
-
-## Code Style Guidelines
-
-### TypeScript Configuration
-- **Target**: ES2017
-- **Module**: ESNext with bundler resolution
-- **Strict Mode**: Enabled (`strict: true`, `strictNullChecks: true`)
-- **JSX**: react-jsx
+- **Indentation**: 2 spaces (some legacy files use 4 — follow the existing file's convention)
+- **Quotes**: Single quotes preferred
+- **Semicolons**: Omit trailing semicolons (no-semi style)
+- **No Prettier configured** — match the style of the file you are editing
 
 ### Imports
 
-**Ordering** (recommended):
-1. External libraries (e.g., `react`, `vitest`)
-2. Internal types (`import type`)
-3. Internal modules
-4. Relative paths
+Order imports as follows (no blank lines between groups):
 
-```typescript
-import React from 'react'
-import { describe, it, expect } from 'vitest'
-
-import type { Options, Framework } from '../types'
-import { getComponentRegistry } from './registry'
-```
+1. Type-only imports: `import type { ... } from '...'`
+2. React: `import React from 'react'`
+3. Third-party libraries (Radix UI, lucide-react, unplugin, clsx, etc.)
+4. Internal/relative imports (`../../shared`, `../context`, etc.)
 
 ### Naming Conventions
 
-- **Files**: kebab-case (e.g., `transform.ts`, `button.test.tsx`)
-- **Components**: PascalCase (e.g., `Button`, `FileTree`)
-- **Functions/variables**: camelCase (e.g., `transformMdx`, `usedComponents`)
-- **Constants**: SCREAMING_SNAKE_CASE for true constants (e.g., `DEFAULT_FRAMEWORK`)
-- **Types/Interfaces**: PascalCase (e.g., `Options`, `Framework`)
+| Entity                   | Convention       | Example                              |
+|--------------------------|------------------|--------------------------------------|
+| Component files          | PascalCase       | `Button.tsx`, `FileTree.tsx`         |
+| Non-component files      | camelCase        | `transform.ts`, `registry.ts`       |
+| React components         | PascalCase       | `AccordionTrigger`, `DocuImage`      |
+| Functions                | camelCase        | `transformMdx`, `detectComponents`   |
+| Types / Interfaces       | PascalCase       | `NoteProps`, `Options`, `Framework`  |
+| Module-level constants   | UPPER_SNAKE_CASE | `DEFAULT_IMPORT_SOURCE`              |
+| Object-level constants   | camelCase        | `componentStyles`, `iconMap`         |
 
-### Type Usage
+### Types
 
-- Use `import type` for type-only imports to improve performance
-- Enable strict null checks - always handle `null` and `undefined` cases
-- Use explicit return types for exported functions
-- Avoid `any` - use `unknown` if type is truly unknown
+- Use `interface` for component props and object shapes
+- Use `type` for unions and simple aliases: `type Framework = 'react' | 'vue' | 'svelte'`
+- Use `React.FC<Props>` for arrow-function components with default export
+- Use destructured props for named-export function components:
+  `export function Note({ title, type, children }: NoteProps) { ... }`
+- Use `React.forwardRef` + `displayName` for Radix UI wrappers
 
-```typescript
-// Good
-import type { Options } from './types'
-export function transformMdx(code: string, options?: Options): { code: string; hasTransformed: boolean }
+### Exports
 
-// Avoid
-import { Options } from './types'
-```
+- **Content components** (`react/content/`): default export at bottom + optional named exports.
+  The barrel `content/index.ts` re-exports defaults as named: `export { default as Note } from './Note'`
+- **UI components** (`react/ui/`): named exports only at bottom of file
+- **Core modules**: named exports only
+- **Bundler entries** (`vite.ts`, `webpack.ts`, etc.): default export only
 
-### React/JSX
+### Component Patterns
 
-- Use functional components with hooks
-- Use TypeScript for component props
-- Components should be declared as:
-```typescript
-interface ButtonProps {
-  href: string
-  text?: string
-  size?: 'sm' | 'md' | 'lg'
+- Add `'use client'` directive at top of files using hooks or browser APIs
+- All styling uses `componentStyles` from `shared/theme.ts` + `cn()` for class merging
+- Components that need Link/Image use `useDocuBook()` context hook
+- Graceful no-op: `if (!src) return null`, `if (usedComponents.length === 0) return`
+- No try/catch — prefer early returns, optional chaining (`?.`), nullish coalescing (`??`)
+
+## Testing
+
+- Framework: Vitest + jsdom + @testing-library/react
+- Test location: `src/components/__tests__/<ComponentName>.test.tsx`
+- Globals enabled (`describe`, `it`, `expect` available without import, but files import from vitest anyway)
+- `@testing-library/jest-dom` matchers available (e.g. `toHaveAttribute`, `toHaveClass`)
+
+### Test Conventions
+
+```tsx
+import { describe, it, expect } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import React from 'react'
+import Button from '../react/content/Button'           // import from react/content/
+import { DocuBookProvider } from '../react/context'
+
+// Components using useDocuBook need a provider wrapper:
+const mockLink = ({ href, children, ...props }: any) => (
+  <a href={href} {...props}>{children}</a>
+)
+
+const renderWithProvider = (ui: React.ReactElement) => {
+  return render(
+    <DocuBookProvider value={{ Link: mockLink, Image: 'img' as any }}>
+      {ui}
+    </DocuBookProvider>
+  )
 }
 
-export function Button({ href, text, size = 'md' }: ButtonProps) { ... }
-```
-
-### Error Handling
-
-- Use early returns for error conditions
-- Use optional chaining (`?.`) and nullish coalescing (`??`)
-- Throw descriptive errors:
-```typescript
-if (!registry[name]) {
-  throw new Error(`Component '${name}' not found in registry`)
-}
-```
-
-### Testing Conventions
-
-- Test files: `*.test.tsx` or `*.test.ts` in `__tests__` directories
-- Use Vitest with `@testing-library/react`
-- Use `describe` blocks for grouping related tests
-- Use `it` or `test` for individual test cases
-- Provide descriptive test names:
-```typescript
 describe('Button', () => {
-  it('renders with text', () => { ... })
-  it('renders link with correct href', () => { ... })
+  it('renders with text', () => {
+    renderWithProvider(<Button href="/test" text="Click me" />)
+    expect(screen.getByText('Click me')).toBeDefined()
+  })
 })
 ```
 
-### ESLint Rules
+- Components using `useDocuBook()` (Button, Card, Link, Image) require `DocuBookProvider` wrapper
+- Standalone components (Accordion, Note, Kbd, Pre, etc.) can render without a provider
+- Use `screen.getByText`, `screen.getByRole`, `screen.queryByText` for queries
+- Use `fireEvent` for interactions; `userEvent` is not installed
 
-This project uses ESLint with TypeScript support:
-- `@typescript-eslint/no-unused-vars`: Warn (use `_` prefix for unused args)
-- `react-refresh/only-export-components`: Warn
-- `react-hooks/rules-of-hooks`: Enforced
-- `react-hooks/exhaustive-deps`: Enforced
+### Path Alias
 
-### Unused Variables
+`@` maps to `./src` in vitest (configured in `vitest.config.ts`), but tests use relative paths.
 
-Prefix unused function parameters with underscore:
-```typescript
-function transform(code: string, _id: string) { ... }
-```
+## ESLint
 
-### Import Aliases
+Flat config (`eslint.config.js`):
+- `@typescript-eslint/no-unused-vars`: warn (prefix unused args with `_`)
+- `react-hooks` recommended rules enforced
+- `react-refresh/only-export-components`: warn
 
-The codebase uses `@` alias for imports:
-```typescript
-import { Button } from '@/components/react/Button'
-```
-This maps to `./src/`.
+## Build
 
-### Git Conventions
+tsup produces dual CJS+ESM bundles. Two configs:
+1. Plugin entries (13 bundler files) -> `dist/`
+2. Components barrel -> `dist/components/`
 
-- Commit messages should be concise (50 chars max for subject)
-- Use conventional commit format when appropriate
-- Never commit `dist/` or `node_modules/`
-
-### Key Files
-
-- `src/index.ts` - Main entry point
-- `src/core/transform.ts` - Core MDX transformation logic
-- `src/core/registry.ts` - Component registry
-- `src/components/` - UI components (React, Vue, Svelte)
-- `src/framework/` - Framework detection
-- `vitest.config.ts` - Test configuration
-- `tsup.config.ts` - Build configuration
-
-### Framework Adapters
-
-The project exports adapters for multiple frameworks:
-- `vite`, `webpack`, `rollup`, `esbuild`, `rspack`, `farm`, `rolldown`
-- `next`, `nuxt`, `astro`, `bun`
-- Each has its own entry point in `src/`
+External: `react`, `react-dom`, `lucide-react`, `clsx`, `@nuxt/kit`, `vue`, `svelte`, etc.
