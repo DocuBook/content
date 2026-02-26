@@ -38,12 +38,43 @@ function createRegistry(framework: Framework): Record<string, ComponentMeta> {
     }
 }
 
-export function getComponentRegistry(framework: Framework = 'react'): Record<string, ComponentMeta> {
-    return createRegistry(framework)
+const registryCache = new Map<Framework, Record<string, ComponentMeta>>()
+const regexCache = new Map<Framework, RegExp>()
+
+export function getComponentRegistry(
+    framework: Framework = 'react',
+    customComponents?: Record<string, ComponentMeta>,
+): Record<string, ComponentMeta> {
+    if (!customComponents || Object.keys(customComponents).length === 0) {
+        const cached = registryCache.get(framework)
+        if (cached) return cached
+        const registry = createRegistry(framework)
+        registryCache.set(framework, registry)
+        return registry
+    }
+    // Merge custom components with built-in (custom overrides built-in)
+    return { ...createRegistry(framework), ...customComponents }
 }
 
-export function buildComponentDetectionRegex(framework: Framework = 'react'): RegExp {
+export function buildComponentDetectionRegex(
+    framework: Framework = 'react',
+    customComponents?: Record<string, ComponentMeta>,
+): RegExp {
+    // Custom components: always build fresh regex (not cached)
+    if (customComponents && Object.keys(customComponents).length > 0) {
+        const registry = getComponentRegistry(framework, customComponents)
+        const names = Object.keys(registry)
+        return new RegExp(`<(${names.join('|')})(?=[\\s/>])`, 'g')
+    }
+
+    const cached = regexCache.get(framework)
+    if (cached) {
+        cached.lastIndex = 0 // Reset regex state because of /g flag
+        return cached
+    }
     const registry = getComponentRegistry(framework)
     const names = Object.keys(registry)
-    return new RegExp(`<(${names.join('|')})(?=[\\s/>])`, 'g')
+    const regex = new RegExp(`<(${names.join('|')})(?=[\\s/>])`, 'g')
+    regexCache.set(framework, regex)
+    return regex
 }

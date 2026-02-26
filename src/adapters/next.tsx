@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { DocuBookProvider } from '../components/react/context'
+import NextLink from 'next/link'
+import NextImage from 'next/image'
 
 /**
  * Next.js adapter — wraps children with DocuBookProvider
@@ -15,11 +17,6 @@ import { DocuBookProvider } from '../components/react/context'
  * }
  */
 export function NextAdapter({ children }: { children: React.ReactNode }) {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const NextLink = require('next/link').default
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const NextImage = require('next/image').default
-
     return (
         <DocuBookProvider value={{ Link: NextLink, Image: NextImage }}>
             {children}
@@ -28,3 +25,4 @@ export function NextAdapter({ children }: { children: React.ReactNode }) {
 }
 
 export default NextAdapter
+

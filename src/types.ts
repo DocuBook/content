@@ -1,3 +1,5 @@
+import type { ComponentMeta } from './core/registry'
+
 export type Framework = 'react' | 'vue' | 'svelte'
 
 export interface Options {
@@ -24,4 +26,12 @@ export interface Options {
      * @default 'unplugin-docubook/components'
      */
     importSource?: string
+
+    /**
+     * Custom components to register for auto-import detection.
+     * These are merged with the built-in registry.
+     * @example
+     * { MyWidget: { exports: ['MyWidget'], path: '/custom' } }
+     */
+    customComponents?: Record<string, ComponentMeta>
 }
