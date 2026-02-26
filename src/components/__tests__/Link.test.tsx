@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import { DocuLink } from '../react/Link'
+import { DocuLink } from '../react/content/Link'
 import { DocuBookProvider } from '../react/context'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

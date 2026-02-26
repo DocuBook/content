@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { Files, File, Folder } from '../react/FileTree'
+import { Files, File, Folder } from '../react/content/FileTree'
 
 describe('FileTree', () => {
   it('renders File component', () => {

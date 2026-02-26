@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import Accordion from '../react/Accordion'
-import AccordionGroup from '../react/AccordionGroup'
+import Accordion from '../react/content/Accordion'
+import AccordionGroup from '../react/content/AccordionGroup'
 
 describe('Accordion', () => {
   it('renders with title', () => {

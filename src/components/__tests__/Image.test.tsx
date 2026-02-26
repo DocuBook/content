@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import React from 'react'
-import { DocuImage } from '../react/Image'
+import { DocuImage } from '../react/content/Image'
 import { DocuBookProvider } from '../react/context'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

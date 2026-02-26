@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Release, Changes } from '../react/Release'
+import { Release, Changes } from '../react/content/Release'
 
 describe('Release', () => {
   it('renders version', () => {
