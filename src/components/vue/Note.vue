@@ -1,14 +1,34 @@
 <script setup lang="ts">
-defineProps<{ variant?: 'default' | 'info' | 'warning' | 'danger' | 'success' }>()
+import { computed } from 'vue'
+import { componentStyles } from '../shared'
+
+type NoteType = 'note' | 'danger' | 'warning' | 'success'
+
+const props = withDefaults(defineProps<{
+  type?: NoteType
+  title?: string
+}>(), {
+  type: 'note',
+  title: 'Note'
+})
+
+const noteClasses = computed(() => [
+  componentStyles.note.base,
+  componentStyles.note.variants[props.type]
+])
 </script>
 
 <template>
-  <div class="border-l-4 p-4 rounded bg-muted/50" :class="{
-    'border-blue-500 bg-blue-50 dark:bg-blue-950/20': variant === 'info' || !variant,
-    'border-yellow-500 bg-yellow-50 dark:bg-yellow-950/20': variant === 'warning',
-    'border-red-500 bg-red-50 dark:bg-red-950/20': variant === 'danger',
-    'border-green-500 bg-green-50 dark:bg-green-950/20': variant === 'success',
-  }">
-    <slot />
+  <div :class="noteClasses">
+    <div :class="componentStyles.note.icon">
+      <!-- Icon will be handled by parent or we can add lucide-vue-next here -->
+      <slot name="icon" />
+    </div>
+    <div :class="componentStyles.note.content">
+      <h5 :class="componentStyles.note.title">{{ title }}</h5>
+      <div :class="componentStyles.note.description">
+        <slot />
+      </div>
+    </div>
   </div>
 </template>

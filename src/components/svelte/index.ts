@@ -14,3 +14,29 @@ export { default as Stepper } from './Stepper.svelte'
 export { default as Release } from './Release.svelte'
 export { default as Link } from './Link.svelte'
 export { default as Image } from './Image.svelte'
+
+// New Svelte Components (Radix-style)
+export { default as Tabs } from './Tabs.svelte'
+export { default as TabsList } from './TabsList.svelte'
+export { default as TabsTrigger } from './TabsTrigger.svelte'
+export { default as TabsContent } from './TabsContent.svelte'
+
+export { default as Collapsible } from './Collapsible.svelte'
+export { default as CollapsibleTrigger } from './CollapsibleTrigger.svelte'
+export { default as CollapsibleContent } from './CollapsibleContent.svelte'
+
+export { default as Dialog } from './Dialog.svelte'
+export { default as DialogTrigger } from './DialogTrigger.svelte'
+export { default as DialogContent } from './DialogContent.svelte'
+export { default as DialogHeader } from './DialogHeader.svelte'
+export { default as DialogFooter } from './DialogFooter.svelte'
+export { default as DialogTitle } from './DialogTitle.svelte'
+export { default as DialogDescription } from './DialogDescription.svelte'
+
+export { default as Checkbox } from './Checkbox.svelte'
+export { default as Switch } from './Switch.svelte'
+
+export { default as RadioGroup } from './RadioGroup.svelte'
+export { default as RadioGroupItem } from './RadioGroupItem.svelte'
+
+export { default as Separator } from './Separator.svelte'

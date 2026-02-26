@@ -1,7 +1,7 @@
 {
   "name": "unplugin-docubook",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Write with MDX — works with pretty much any JS framework: Vite, React, Vue, Svelte, you name it",
   "license": "MIT",
   "keywords": [
@@ -106,6 +106,7 @@
       "import": "./dist/framework/index.js",
       "require": "./dist/framework/index.cjs"
     },
+    "./theme.css": "./dist/components/theme.css",
     "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
@@ -128,11 +129,13 @@
     "clsx": ">=2",
     "esbuild": "*",
     "lucide-react": ">=0.300",
+    "lucide-svelte": ">=0.300",
     "lucide-vue-next": ">=0.300",
     "react": ">=18",
     "react-dom": ">=18",
     "rollup": "^3 || ^4",
     "svelte": ">=4",
+    "tailwindcss": ">=3",
     "vite": ">=3",
     "vue": ">=3",
     "webpack": "^4 || ^5"
@@ -147,22 +150,19 @@
     "@nuxt/schema": {
       "optional": true
     },
+    "clsx": {
+      "optional": true
+    },
     "esbuild": {
       "optional": true
     },
-    "rollup": {
+    "lucide-react": {
       "optional": true
     },
-    "vite": {
+    "lucide-svelte": {
       "optional": true
     },
-    "vue": {
-      "optional": true
-    },
-    "svelte": {
-      "optional": true
-    },
-    "webpack": {
+    "lucide-vue-next": {
       "optional": true
     },
     "react": {
@@ -171,13 +171,22 @@
     "react-dom": {
       "optional": true
     },
-    "lucide-react": {
+    "rollup": {
       "optional": true
     },
-    "lucide-vue-next": {
+    "svelte": {
       "optional": true
     },
-    "clsx": {
+    "tailwindcss": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    },
+    "webpack": {
       "optional": true
     }
   },
@@ -186,6 +195,19 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.3",
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-checkbox": "^1.3.3",
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-radio-group": "^1.3.8",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-switch": "^1.2.6",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@radix-ui/react-visually-hidden": "^1.2.4",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^22.15.21",
@@ -206,5 +228,6 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vitest": "^3.1.4"
-  }
+  },
+  "packageManager": "yarn@4.12.0+sha512.f45ab632439a67f8bc759bf32ead036a1f413287b9042726b7cc4818b7b49e14e9423ba49b18f9e06ea4941c1ad062385b1d8760a8d5091a1a31e5f6219afca8"
 }

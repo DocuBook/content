@@ -1,0 +1,273 @@
+/**
+ * DocuBook Theme - CSS Variables
+ * 
+ * This file defines CSS custom properties (variables) for the DocuBook component library.
+ * Import this file in your project's global CSS or tailwind.config.css
+ * 
+ * Usage:
+ * 1. Import in your global CSS: @import 'unplugin-docubook/components/theme.css';
+ * 2. Or copy these variables into your tailwind.config.css
+ * 
+ * Customization:
+ * Override any variable in your own CSS after importing:
+ * :root {
+ *   --color-primary: #your-color;
+ * }
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-primary-hover: #2563eb;
+  
+  /* Accent Colors */
+  --color-accent: #8b5cf6;
+  --color-accent-foreground: #ffffff;
+  --color-accent-hover: #7c3aed;
+  
+  /* Background & Foreground */
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  
+  /* Card */
+  --color-card: #ffffff;
+  --color-card-foreground: #0f172a;
+  
+  /* Muted */
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  
+  /* Border */
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #3b82f6;
+  
+  /* Popover (for tooltips, dropdowns) */
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0f172a;
+  
+  /* Secondary */
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  
+  /* Destructive */
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  
+  /* Note Variants - Light Mode */
+  --color-note-bg: #eff6ff;
+  --color-note-border: #bfdbfe;
+  --color-note-accent: #3b82f6;
+  --color-note-text: #1e40af;
+  
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fecaca;
+  --color-danger-accent: #ef4444;
+  --color-danger-text: #991b1b;
+  
+  --color-warning-bg: #fff7ed;
+  --color-warning-border: #fed7aa;
+  --color-warning-accent: #f97316;
+  --color-warning-text: #9a3412;
+  
+  --color-success-bg: #f0fdf4;
+  --color-success-border: #bbf7d0;
+  --color-success-accent: #22c55e;
+  --color-success-text: #166534;
+  
+  /* Spacing Scale (matches Tailwind) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  
+  /* Typography */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  
+  /* File Tree */
+  --color-filetree-hover: rgba(59, 130, 246, 0.1);
+  --color-filetree-hover-dark: rgba(30, 58, 138, 0.2);
+  --color-filetree-border: rgba(226, 232, 240, 0.5);
+  --color-filetree-border-dark: rgba(51, 65, 85, 0.5);
+  
+  /* Release/Changes Badge Variants */
+  --color-badge-added-bg: #dcfce7;
+  --color-badge-added-text: #166534;
+  --color-badge-added-border: #86efac;
+  --color-badge-added-bg-dark: rgba(22, 101, 52, 0.3);
+  --color-badge-added-text-dark: #bbf7d0;
+  --color-badge-added-border-dark: rgba(22, 101, 52, 0.5);
+  
+  --color-badge-fixed-bg: #fef9c3;
+  --color-badge-fixed-text: #854d0e;
+  --color-badge-fixed-border: #fde047;
+  --color-badge-fixed-bg-dark: rgba(133, 77, 14, 0.3);
+  --color-badge-fixed-text-dark: #fde047;
+  --color-badge-fixed-border-dark: rgba(133, 77, 14, 0.5);
+  
+  --color-badge-improved-bg: #cffafe;
+  --color-badge-improved-text: #155e75;
+  --color-badge-improved-border: #67e8f9;
+  --color-badge-improved-bg-dark: rgba(21, 94, 117, 0.3);
+  --color-badge-improved-text-dark: #a5f3fc;
+  --color-badge-improved-border-dark: rgba(21, 94, 117, 0.5);
+  
+  --color-badge-deprecated-bg: #ffedd5;
+  --color-badge-deprecated-text: #9a3412;
+  --color-badge-deprecated-border: #fdba74;
+  --color-badge-deprecated-bg-dark: rgba(154, 52, 18, 0.3);
+  --color-badge-deprecated-text-dark: #fdba74;
+  --color-badge-deprecated-border-dark: rgba(154, 52, 18, 0.5);
+  
+  --color-badge-removed-bg: #fce7f3;
+  --color-badge-removed-text: #9d174d;
+  --color-badge-removed-border: #f9a8d4;
+  --color-badge-removed-bg-dark: rgba(157, 23, 77, 0.3);
+  --color-badge-removed-text-dark: #fbcfe8;
+  --color-badge-removed-border-dark: rgba(157, 23, 77, 0.5);
+  
+  /* Stepper */
+  --color-stepper-line: rgba(226, 232, 240, 0.8);
+  --color-stepper-line-dark: rgba(51, 65, 85, 0.8);
+  --color-stepper-indicator-bg: rgba(241, 245, 249, 0.8);
+  --color-stepper-indicator-bg-dark: rgba(30, 41, 59, 0.8);
+  --color-stepper-indicator-border: rgba(148, 163, 184, 0.5);
+  --color-stepper-indicator-border-dark: rgba(71, 85, 105, 0.5);
+}
+
+/* Dark Mode - Auto-detect via prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0f172a;
+    --color-foreground: #f8fafc;
+    
+    --color-card: #1e293b;
+    --color-card-foreground: #f8fafc;
+    
+    --color-muted: #334155;
+    --color-muted-foreground: #94a3b8;
+    
+    --color-border: #334155;
+    --color-input: #334155;
+    --color-ring: #3b82f6;
+    
+    --color-popover: #1e293b;
+    --color-popover-foreground: #f8fafc;
+    
+    --color-secondary: #334155;
+    --color-secondary-foreground: #f8fafc;
+    
+    /* Note Variants - Dark Mode */
+    --color-note-bg: rgba(30, 58, 138, 0.3);
+    --color-note-border: rgba(30, 64, 175, 0.5);
+    --color-note-text: #bfdbfe;
+    
+    --color-danger-bg: rgba(127, 29, 29, 0.3);
+    --color-danger-border: rgba(153, 27, 27, 0.5);
+    --color-danger-text: #fecaca;
+    
+    --color-warning-bg: rgba(124, 45, 18, 0.3);
+    --color-warning-border: rgba(154, 52, 18, 0.5);
+    --color-warning-text: #fed7aa;
+    
+    --color-success-bg: rgba(20, 83, 45, 0.3);
+    --color-success-border: rgba(22, 101, 52, 0.5);
+    --color-success-text: #bbf7d0;
+  }
+}
+
+/* Manual Dark Mode Class */
+.dark {
+  --color-background: #0f172a;
+  --color-foreground: #f8fafc;
+  
+  --color-card: #1e293b;
+  --color-card-foreground: #f8fafc;
+  
+  --color-muted: #334155;
+  --color-muted-foreground: #94a3b8;
+  
+  --color-border: #334155;
+  --color-input: #334155;
+  --color-ring: #3b82f6;
+  
+  --color-popover: #1e293b;
+  --color-popover-foreground: #f8fafc;
+  
+  --color-secondary: #334155;
+  --color-secondary-foreground: #f8fafc;
+  
+  /* Note Variants - Dark Mode */
+  --color-note-bg: rgba(30, 58, 138, 0.3);
+  --color-note-border: rgba(30, 64, 175, 0.5);
+  --color-note-text: #bfdbfe;
+  
+  --color-danger-bg: rgba(127, 29, 29, 0.3);
+  --color-danger-border: rgba(153, 27, 27, 0.5);
+  --color-danger-text: #fecaca;
+  
+  --color-warning-bg: rgba(124, 45, 18, 0.3);
+  --color-warning-border: rgba(154, 52, 18, 0.5);
+  --color-warning-text: #fed7aa;
+  
+  --color-success-bg: rgba(20, 83, 45, 0.3);
+  --color-success-border: rgba(22, 101, 52, 0.5);
+  --color-success-text: #bbf7d0;
+}
+
+/* Animation Keyframes */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Utility Classes for DocuBook Components */
+.docubook-container {
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+}
+
+/* Ensure components inherit theme */
+.docubook-container * {
+  border-color: var(--color-border);
+}

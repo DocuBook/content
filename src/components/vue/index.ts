@@ -14,3 +14,12 @@ export { default as Stepper } from './Stepper.vue'
 export { default as Release } from './Release.vue'
 export { default as Link } from './Link.vue'
 export { default as Image } from './Image.vue'
+
+// New Vue Components (Radix-style)
+export { default as Tabs } from './Tabs.vue'
+export { default as Collapsible } from './Collapsible.vue'
+export { default as Dialog } from './Dialog.vue'
+export { default as Checkbox } from './Checkbox.vue'
+export { default as Switch } from './Switch.vue'
+export { default as RadioGroup } from './RadioGroup.vue'
+export { default as Separator } from './Separator.vue'

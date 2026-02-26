@@ -33,21 +33,24 @@ describe('Button', () => {
   it('applies default size (md)', () => {
     renderWithProvider(<Button href="/test" />)
     const link = screen.getByRole('link')
+    expect(link.className).toContain('h-9')
     expect(link.className).toContain('px-4')
   })
 
   it('applies small size', () => {
     renderWithProvider(<Button href="/test" size="sm" />)
     const link = screen.getByRole('link')
+    expect(link.className).toContain('h-8')
     expect(link.className).toContain('px-3')
-    expect(link.className).toContain('text-sm')
+    expect(link.className).toContain('text-xs')
   })
 
   it('applies large size', () => {
     renderWithProvider(<Button href="/test" size="lg" />)
     const link = screen.getByRole('link')
-    expect(link.className).toContain('px-5')
-    expect(link.className).toContain('text-lg')
+    expect(link.className).toContain('h-10')
+    expect(link.className).toContain('px-6')
+    expect(link.className).toContain('text-base')
   })
 
   it('applies primary variation by default', () => {
@@ -66,7 +69,6 @@ describe('Button', () => {
     renderWithProvider(<Button href="/test" variation="outline" />)
     const link = screen.getByRole('link')
     expect(link.className).toContain('border')
-    expect(link.className).toContain('text-accent')
   })
 
   it('opens external links with rel="noopener noreferrer"', () => {
