@@ -42,6 +42,23 @@ import 'unplugin-docubook/theme.css';
 
 ---
 
+## 🔌 Integration
+
+DocuBook is not a replacement for your MDX compiler; it is a **transformer** that works alongside your favorite compiler. DocuBook handles automatic component imports (auto-import) before the MDX is compiled.
+
+### Requirement
+You still need an MDX compiler/bundler based on your framework:
+- **Vite (React/Vue)**: `@mdx-js/rollup`
+- **Next.js**: `@next/mdx` (recommended) or `next-mdx-remote`
+- **Svelte**: `mdsvex`
+- **Astro**: `@astrojs/mdx`
+
+> [!NOTE]
+> **What's the difference with `next-mdx-remote`?**
+> `next-mdx-remote` compiles MDX at runtime. DocuBook (via Webpack/Vite) processes your MDX files at build-time. If you are using local MDX files, DocuBook eliminates the need to write manual imports in every file or repeatedly register components in a provider.
+
+---
+
 ## ⚙️ Configuration
 
 > [!TIP]
@@ -66,21 +83,31 @@ export default defineConfig({
 </details>
 
 <details>
-<summary><b>Next.js</b></summary>
+<summary><b>Next.js (App Router / Pages Router)</b></summary>
 
+First, install the `@next/mdx` compiler:
+```bash
+npm install @next/mdx @mdx-js/loader @mdx-js/react
+```
+
+Then configure `next.config.mjs`:
 ```javascript
 // next.config.mjs
 import DocuBook from 'unplugin-docubook/webpack';
+import createMDX from '@next/mdx';
+
+const withMDX = createMDX({});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   webpack(config) {
     config.plugins.push(DocuBook({ framework: 'react' }));
     return config;
   },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);
 ```
 </details>
 
