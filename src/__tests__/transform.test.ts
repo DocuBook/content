@@ -56,4 +56,16 @@ Inline \`<Note>\` should be ignored.
         expect(result.hasTransformed).toBe(true)
         expect(result.code).toContain("import { MyWidget } from 'unplugin-docubook/components/custom'")
     })
+
+    it('supports custom components with absolute paths in transform', () => {
+        const code = '<MyWidget />'
+        const options = {
+            customComponents: {
+                MyWidget: { exports: ['MyWidget'], path: '@/components/MyWidget' }
+            }
+        }
+        const result = transformMdx(code, options)
+        expect(result.hasTransformed).toBe(true)
+        expect(result.code).toContain("import { MyWidget } from '@/components/MyWidget'")
+    })
 })

@@ -57,7 +57,12 @@ export function generateImports(
         const meta = registry[name]
         if (!meta) continue
 
-        const fullPath = `${importSource}${meta.path}`
+        // If path starts with '/', it's relative to importSource.
+        // Otherwise, it's a full import path (e.g. '@/components/MyComp' or 'my-lib')
+        const fullPath = meta.path.startsWith('/')
+            ? `${importSource}${meta.path}`
+            : meta.path
+
         if (!pathToExports.has(fullPath)) {
             pathToExports.set(fullPath, new Set())
         }
