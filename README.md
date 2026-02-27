@@ -1,4 +1,4 @@
-# 📚 @DocuBook/content
+# <img src="./docu.svg" width="32" height="32" valign="middle" /> @DocuBook/content
 
 The Universal Documentation Engine for any JavaScript Framework.
 
