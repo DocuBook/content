@@ -44,9 +44,12 @@ import 'unplugin-docubook/theme.css';
 
 ## ⚙️ Configuration
 
-Docubook supports all major bundlers via `unplugin`.
+> [!TIP]
+> DocuBook supports all major bundlers via `unplugin`. Select your bundler below to see the configuration.
 
-### Vite (React/Vue/Svelte/Astro)
+<details>
+<summary><b>Vite (React, Vue, Svelte, Astro)</b></summary>
+
 ```typescript
 // vite.config.ts
 import { defineConfig } from 'vite';
@@ -60,8 +63,11 @@ export default defineConfig({
   ],
 });
 ```
+</details>
 
-### Next.js
+<details>
+<summary><b>Next.js</b></summary>
+
 ```javascript
 // next.config.mjs
 import DocuBook from 'unplugin-docubook/webpack';
@@ -76,8 +82,11 @@ const nextConfig = {
 
 export default nextConfig;
 ```
+</details>
 
-### Nuxt (Vue)
+<details>
+<summary><b>Nuxt (Vue)</b></summary>
+
 ```typescript
 // nuxt.config.ts
 export default defineNuxtConfig({
@@ -86,9 +95,13 @@ export default defineNuxtConfig({
   ]
 })
 ```
+</details>
 
-### Webpack/Rollup
+<details>
+<summary><b>Webpack / Rollup / Others</b></summary>
+
 Import from `unplugin-docubook/webpack` or `unplugin-docubook/rollup` and add to your plugins array.
+</details>
 
 ---
 
