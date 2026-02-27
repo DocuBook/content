@@ -1,4 +1,4 @@
-# 📚 DocuBook
+# 📚 @DocuBook/content
 
 The Universal Documentation Engine for any JavaScript Framework.
 
