@@ -1,14 +1,9 @@
-<script lang="ts">
-  import { Dialog as BitsDialog } from 'bits-ui';
-  import { componentStyles } from '../../shared';
-
-  type DialogProps = BitsDialog.RootProps & {
-    class?: string;
-  };
-
-  let { open = $bindable(false), defaultOpen = false, class: className = '', children, ...restProps }: DialogProps = $props();
+<script lang="ts" context="module">
+  export { default as Dialog } from 'bits-ui/dialog'
+  export { default as DialogTrigger } from 'bits-ui/dialog'
+  export { default as DialogContent } from 'bits-ui/dialog'
+  export { default as DialogHeader } from 'bits-ui/dialog'
+  export { default as DialogTitle } from 'bits-ui/dialog'
+  export { default as DialogDescription } from 'bits-ui/dialog'
+  export { default as DialogFooter } from 'bits-ui/dialog'
 </script>
-
-<BitsDialog.Root {open} {defaultOpen} {...restProps}>
-  <slot />
-</BitsDialog.Root>

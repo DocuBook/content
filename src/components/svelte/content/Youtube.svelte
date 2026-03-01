@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
+  import { componentStyles } from '../../shared'
 
-  let videoId = $props<string>('');
-  let className = $props<string>('');
+  let { videoId = '', className = '' }: { videoId?: string; className?: string } = $props()
 
-  const youtubeUrl = $derived(videoId ? `https://www.youtube.com/embed/${videoId}` : '');
+  const youtubeUrl = $derived(videoId ? `https://www.youtube.com/embed/${videoId}` : '')
 </script>
 
 {#if videoId}

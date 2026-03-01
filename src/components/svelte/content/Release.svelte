@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
+  import { componentStyles } from '../../shared'
 
-  let version = $props<string>('');
-  let date = $props<string>('');
-  let className = $props<string>('');
+  let { version = '', date = '', className = '' }: {
+    version?: string
+    date?: string
+    className?: string
+  } = $props()
 
-  type ChangeType = 'major' | 'minor' | 'patch';
+  type ChangeType = 'major' | 'minor' | 'patch'
 </script>
 
 <div class={componentStyles.release.base + ' ' + className}>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  let className = $props<string>('');
+  let { className = '' }: { className?: string } = $props()
 </script>
 
 <div class={'grid gap-4 ' + className}>

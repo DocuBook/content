@@ -1,27 +1,29 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
-  import { Info, AlertTriangle, AlertCircle, CheckCircle } from 'lucide-svelte';
+  import { componentStyles } from '../../shared'
+  import { Info, AlertTriangle, AlertCircle, CheckCircle } from 'lucide-svelte'
 
   const iconMap = {
     note: Info,
     danger: AlertCircle,
     warning: AlertTriangle,
     success: CheckCircle,
-  };
+  } as const
 
-  type NoteType = keyof typeof iconMap;
+  type NoteType = keyof typeof iconMap
 
-  let type = $props<NoteType>('note');
-  let title = $props<string>('Note');
-  let className = $props<string>('');
+  let { type = 'note', title = 'Note', className = '' }: {
+    type?: NoteType
+    title?: string
+    className?: string
+  } = $props()
 
-  const Icon = $derived(iconMap[type]);
+  const Icon = $derived(iconMap[type])
 
   const noteClasses = $derived([
     componentStyles.note.base,
     componentStyles.note.variants[type],
     className
-  ].join(' '));
+  ].join(' '))
 </script>
 
 <div class={noteClasses}>

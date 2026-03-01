@@ -1,17 +1,19 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
-  import TooltipRoot from '../ui/Tooltip.svelte';
-  import TooltipTrigger from '../ui/TooltipTrigger.svelte';
-  import TooltipContent from '../ui/TooltipContent.svelte';
+  import { componentStyles } from '../../shared'
+  import { Tooltip as TooltipRoot, TooltipTrigger, TooltipContent } from '../ui'
 
-  let className = $props<string>('');
+  let { className = '', children, trigger } = $props<{
+    className?: string
+    children?: any
+    trigger?: any
+  }>()
 </script>
 
 <TooltipRoot>
   <TooltipTrigger class={className}>
-    <slot name="trigger" />
+    {@render trigger?.()}
   </TooltipTrigger>
   <TooltipContent>
-    <slot />
+    {@render children?.()}
   </TooltipContent>
 </TooltipRoot>

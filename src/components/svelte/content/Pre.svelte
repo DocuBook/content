@@ -1,24 +1,22 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
-  import { Check, Copy as CopyIcon } from 'lucide-svelte';
+  import { componentStyles } from '../../shared'
+  import { Check, Copy as CopyIcon } from 'lucide-svelte'
 
-  let raw = $props<string>('');
-  let dataTitle = $props<string>('');
-  let className = $props<string>('');
+  let { raw = '', dataTitle = '', className = '' }: { raw?: string; dataTitle?: string; className?: string } = $props()
 
-  let isCopied = $state(false);
+  let isCopied = $state(false)
 
   async function handleCopy() {
     if (raw) {
-      await navigator.clipboard.writeText(raw);
-      isCopied = true;
+      await navigator.clipboard.writeText(raw)
+      isCopied = true
       setTimeout(() => {
-        isCopied = false;
-      }, 2000);
+        isCopied = false
+      }, 2000)
     }
   }
 
-  const hasTitle = $derived(!!dataTitle);
+  const hasTitle = $derived(!!dataTitle)
 </script>
 
 <div class={componentStyles.pre.base + ' border border-border rounded-lg my-4 overflow-hidden'}>

@@ -1,13 +1,5 @@
-<script lang="ts">
-  import { Collapsible as BitsCollapsible } from 'bits-ui';
-
-  type CollapsibleProps = BitsCollapsible.RootProps & {
-    class?: string;
-  };
-
-  let { open = $bindable(false), class: className = '', children, ...restProps }: CollapsibleProps = $props();
+<script lang="ts" context="module">
+  export { default as Collapsible } from 'bits-ui/collapsible'
+  export { default as CollapsibleTrigger } from 'bits-ui/collapsible'
+  export { default as CollapsibleContent } from 'bits-ui/collapsible'
 </script>
-
-<BitsCollapsible.Root bind:open class={className} {...restProps}>
-  <slot />
-</BitsCollapsible.Root>

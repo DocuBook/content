@@ -84,6 +84,70 @@ export {
 export { Checkbox, Switch, RadioGroup, RadioGroupItem, Separator } from './react/ui'
 
 // ──────────────────────────────────────────────
+// Svelte Components
+// ──────────────────────────────────────────────
+// Content/Markdown Components
+export {
+  Button as SvelteButton,
+  Card as SvelteCard,
+  CardGroup as SvelteCardGroup,
+  Note as SvelteNote,
+  Link as SvelteLink,
+  Image as SvelteImage,
+  Pre as SveltePre,
+  Copy as SvelteCopy,
+  Kbd as SvelteKbd,
+  Accordion as SvelteAccordion,
+  AccordionGroup as SvelteAccordionGroup,
+  FileTree as SvelteFileTree,
+  Stepper as SvelteStepper,
+  Release as SvelteRelease,
+  Youtube as SvelteYoutube,
+  Tooltip as SvelteTooltip
+} from './svelte/content'
+
+// bits-ui Components (Interactive)
+export {
+  Accordion as SvelteAccordionRoot,
+  AccordionItem as SvelteAccordionItem,
+  AccordionTrigger as SvelteAccordionTrigger,
+  AccordionContent as SvelteAccordionContent,
+  Dialog as SvelteDialog,
+  DialogTrigger as SvelteDialogTrigger,
+  DialogContent as SvelteDialogContent,
+  DialogHeader as SvelteDialogHeader,
+  DialogTitle as SvelteDialogTitle,
+  DialogDescription as SvelteDialogDescription,
+  DialogFooter as SvelteDialogFooter,
+  Tabs as SvelteTabs,
+  TabsList as SvelteTabsList,
+  TabsTrigger as SvelteTabsTrigger,
+  TabsContent as SvelteTabsContent,
+  Checkbox as SvelteCheckbox,
+  Switch as SvelteSwitch,
+  RadioGroup as SvelteRadioGroup,
+  RadioGroupItem as SvelteRadioGroupItem,
+  Collapsible as SvelteCollapsible,
+  CollapsibleTrigger as SvelteCollapsibleTrigger,
+  CollapsibleContent as SvelteCollapsibleContent,
+  Select as SvelteSelect,
+  SelectTrigger as SvelteSelectTrigger,
+  SelectContent as SvelteSelectContent,
+  SelectItem as SvelteSelectItem,
+  SelectValue as SvelteSelectValue,
+  DropdownMenu as SvelteDropdownMenu,
+  DropdownMenuTrigger as SvelteDropdownMenuTrigger,
+  DropdownMenuContent as SvelteDropdownMenuContent,
+  DropdownMenuItem as SvelteDropdownMenuItem,
+  DropdownMenuSeparator as SvelteDropdownMenuSeparator,
+  Tooltip as SvelteTooltipRoot,
+  TooltipTrigger as SvelteTooltipTrigger,
+  TooltipContent as SvelteTooltipContent,
+  TooltipProvider as SvelteTooltipProvider,
+  Separator as SvelteSeparator
+} from './svelte/ui'
+
+// ──────────────────────────────────────────────
 // Theme System (cross-framework)
 // ──────────────────────────────────────────────
 export {

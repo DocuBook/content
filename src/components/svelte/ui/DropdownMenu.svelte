@@ -1,13 +1,7 @@
-<script lang="ts">
-  import { DropdownMenu as BitsDropdownMenu } from 'bits-ui';
-
-  type DropdownMenuProps = BitsDropdownMenu.RootProps & {
-    class?: string;
-  };
-
-  let { class: className = '', children, ...restProps }: DropdownMenuProps = $props();
+<script lang="ts" context="module">
+  export { default as DropdownMenu } from 'bits-ui/dropdown-menu'
+  export { default as DropdownMenuTrigger } from 'bits-ui/dropdown-menu'
+  export { default as DropdownMenuContent } from 'bits-ui/dropdown-menu'
+  export { default as DropdownMenuItem } from 'bits-ui/dropdown-menu'
+  export { default as DropdownMenuSeparator } from 'bits-ui/dropdown-menu'
 </script>
-
-<BitsDropdownMenu.Root class={className} {...restProps}>
-  <slot />
-</BitsDropdownMenu.Root>

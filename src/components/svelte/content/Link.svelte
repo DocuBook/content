@@ -1,20 +1,15 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
-  import { getDocuBook } from '../../../adapters/svelte';
+  import { componentStyles } from '../../shared'
+  import { getDocuBook } from '../../../adapters/svelte'
 
-  let href = $props<string>('');
-  let className = $props<string>('');
+  let { href = '', className = '' }: { href?: string; className?: string } = $props()
 
-  let LinkComponent = $derived<any>(getDocuBook()?.Link || null);
-
-  if (!href) {
-    href = '';
-  }
+  let LinkComponent = $derived(getDocuBook()?.Link || null)
 
   const linkClasses = $derived([
     componentStyles.link.base,
     className
-  ].join(' '));
+  ].join(' '))
 </script>
 
 {#if href}

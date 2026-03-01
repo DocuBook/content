@@ -1,21 +1,29 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
-  import { getDocuBook } from '../../../adapters/svelte';
-  import { Search, X } from 'lucide-svelte';
+  import { componentStyles } from '../../shared'
+  import { getDocuBook } from '../../../adapters/svelte'
+  import { Search, X } from 'lucide-svelte'
 
-  let src = $props<string>('');
-  let alt = $props<string>('alt');
-  let width = $props<number | string>(800);
-  let height = $props<number | string>(350);
-  let className = $props<string>('');
+  let { 
+    src = '', 
+    alt = '', 
+    width = 800, 
+    height = 350, 
+    className = '' 
+  }: {
+    src?: string
+    alt?: string
+    width?: number | string
+    height?: number | string
+    className?: string
+  } = $props()
 
-  let isOpen = $state(false);
+  let isOpen = $state(false)
 
-  let ImageComponent = $derived<any>(getDocuBook()?.Image || null);
+  let ImageComponent = $derived(getDocuBook()?.Image || null)
 
   function handleKeydown(e: KeyboardEvent) {
     if (e.key === 'Escape') {
-      isOpen = false;
+      isOpen = false
     }
   }
 
@@ -23,18 +31,18 @@
     componentStyles.image.base,
     'w-full h-auto transition-transform duration-300 group-hover:scale-[1.01]',
     className
-  ].join(' '));
+  ].join(' '))
 
   function handleClick() {
     if (src) {
-      isOpen = true;
-      document.body.style.overflow = 'hidden';
+      isOpen = true
+      document.body.style.overflow = 'hidden'
     }
   }
 
   function closeLightbox() {
-    isOpen = false;
-    document.body.style.overflow = 'auto';
+    isOpen = false
+    document.body.style.overflow = 'auto'
   }
 </script>
 

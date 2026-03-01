@@ -1,14 +1,4 @@
-<script lang="ts">
-  import { RadioGroup as BitsRadioGroup } from 'bits-ui';
-  import { componentStyles } from '../../shared';
-
-  type RadioGroupProps = BitsRadioGroup.RootProps & {
-    class?: string;
-  };
-
-  let { value = $bindable<string>(), class: className = '', children, ...restProps }: RadioGroupProps = $props();
+<script lang="ts" context="module">
+  export { default as RadioGroup } from 'bits-ui/radio-group'
+  export { default as RadioGroupItem } from 'bits-ui/radio-group'
 </script>
-
-<BitsRadioGroup.Root bind:value class={className || componentStyles.radioGroup.root} {...restProps}>
-  <slot />
-</BitsRadioGroup.Root>

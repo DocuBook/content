@@ -1,18 +1,18 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
-  import { Check, Copy as CopyIcon } from 'lucide-svelte';
+  import { componentStyles } from '../../shared'
+  import { Check, Copy as CopyIcon } from 'lucide-svelte'
 
-  let content = $props<string>('');
+  let { content = '' }: { content?: string } = $props()
 
-  let isCopied = $state(false);
+  let isCopied = $state(false)
 
   async function handleCopy() {
     if (content) {
-      await navigator.clipboard.writeText(content);
-      isCopied = true;
+      await navigator.clipboard.writeText(content)
+      isCopied = true
       setTimeout(() => {
-        isCopied = false;
-      }, 2000);
+        isCopied = false
+      }, 2000)
     }
   }
 </script>

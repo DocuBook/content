@@ -1,20 +1,22 @@
 <script lang="ts">
-  import { componentStyles } from '../../shared';
-  import { getDocuBook } from '../../../adapters/svelte';
+  import { componentStyles } from '../../shared'
+  import { getDocuBook } from '../../../adapters/svelte'
 
-  let title = $props<string>('');
-  let href = $props<string>('');
-  let horizontal = $props<boolean>(false);
-  let icon = $props<string>('');
-  let className = $props<string>('');
+  let { title = '', href = '', horizontal = false, icon = '', className = '' }: {
+    title?: string
+    href?: string
+    horizontal?: boolean
+    icon?: string
+    className?: string
+  } = $props()
 
-  let LinkComponent = $derived<any>(getDocuBook()?.Link || null);
+  let LinkComponent = $derived(getDocuBook()?.Link || null)
 
   const containerClass = $derived([
     'border rounded-lg shadow-sm p-4 transition-all duration-200 bg-card text-card-foreground border-border hover:bg-accent/5 hover:border-accent/30',
     horizontal ? 'flex-row items-center gap-1' : 'flex-col space-y-1',
     className
-  ].join(' '));
+  ].join(' '))
 </script>
 
 {#if href}

@@ -1,36 +1,63 @@
-export { default as Accordion } from './ui/Accordion.svelte';
-export { default as AccordionItem } from './ui/AccordionItem.svelte';
-export { default as AccordionTrigger } from './ui/AccordionTrigger.svelte';
-export { default as AccordionContent } from './ui/AccordionContent.svelte';
-export { default as Dialog } from './ui/Dialog.svelte';
-export { default as DialogTrigger } from './ui/DialogTrigger.svelte';
-export { default as DialogContent } from './ui/DialogContent.svelte';
-export { default as DialogHeader } from './ui/DialogHeader.svelte';
-export { default as DialogTitle } from './ui/DialogTitle.svelte';
-export { default as DialogDescription } from './ui/DialogDescription.svelte';
-export { default as DialogFooter } from './ui/DialogFooter.svelte';
-export { default as Tabs } from './ui/Tabs.svelte';
-export { default as TabsList } from './ui/TabsList.svelte';
-export { default as TabsTrigger } from './ui/TabsTrigger.svelte';
-export { default as TabsContent } from './ui/TabsContent.svelte';
-export { default as Checkbox } from './ui/Checkbox.svelte';
-export { default as Switch } from './ui/Switch.svelte';
-export { default as RadioGroup } from './ui/RadioGroup.svelte';
-export { default as RadioGroupItem } from './ui/RadioGroupItem.svelte';
-export { default as Collapsible } from './ui/Collapsible.svelte';
-export { default as CollapsibleTrigger } from './ui/CollapsibleTrigger.svelte';
-export { default as CollapsibleContent } from './ui/CollapsibleContent.svelte';
-export { default as Separator } from './ui/Separator.svelte';
-export { default as Select } from './ui/Select.svelte';
-export { default as SelectTrigger } from './ui/SelectTrigger.svelte';
-export { default as SelectContent } from './ui/SelectContent.svelte';
-export { default as SelectItem } from './ui/SelectItem.svelte';
-export { default as SelectValue } from './ui/SelectValue.svelte';
-export { default as DropdownMenu } from './ui/DropdownMenu.svelte';
-export { default as DropdownMenuTrigger } from './ui/DropdownMenuTrigger.svelte';
-export { default as DropdownMenuContent } from './ui/DropdownMenuContent.svelte';
-export { default as DropdownMenuItem } from './ui/DropdownMenuItem.svelte';
-export { default as DropdownMenuSeparator } from './ui/DropdownMenuSeparator.svelte';
-export { default as Tooltip } from './ui/Tooltip.svelte';
-export { default as TooltipTrigger } from './ui/TooltipTrigger.svelte';
-export { default as TooltipContent } from './ui/TooltipContent.svelte';
+export { 
+  AccordionRoot as Accordion, 
+  AccordionItem, 
+  AccordionTrigger, 
+  AccordionContent 
+} from './Accordion.svelte'
+
+export { 
+  Dialog, 
+  DialogTrigger, 
+  DialogContent, 
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter
+} from './Dialog.svelte'
+
+export { 
+  Tabs, 
+  TabsList, 
+  TabsTrigger, 
+  TabsContent 
+} from './Tabs.svelte'
+
+export { Checkbox } from './Checkbox.svelte'
+
+export { Switch } from './Switch.svelte'
+
+export { 
+  RadioGroup, 
+  RadioGroupItem 
+} from './RadioGroup.svelte'
+
+export { 
+  Collapsible, 
+  CollapsibleTrigger, 
+  CollapsibleContent 
+} from './Collapsible.svelte'
+
+export { 
+  Select, 
+  SelectTrigger, 
+  SelectContent, 
+  SelectItem, 
+  SelectValue 
+} from './Select.svelte'
+
+export { 
+  DropdownMenu, 
+  DropdownMenuTrigger, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuSeparator 
+} from './DropdownMenu.svelte'
+
+export { 
+  Tooltip, 
+  TooltipTrigger, 
+  TooltipContent,
+  TooltipProvider
+} from './Tooltip.svelte'
+
+export { Separator } from './Separator.svelte'
