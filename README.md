@@ -120,7 +120,6 @@ export default defineConfig({
 <details>
 <summary><b>Next.js (App Router / Pages Router)</b></summary>
 
-Then configure `next.config.mjs`:
 ```javascript
 // next.config.mjs
 import DocuBook from 'unplugin-docubook/webpack';
