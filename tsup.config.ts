@@ -40,7 +40,7 @@ export default [
     ],
   }),
   defineConfig({
-    entry: ['src/components/index.ts'],
+    entry: ['src/components/index.ts', 'src/components/theme.css'],
     format: ['cjs', 'esm'],
     dts: false,
     splitting: false,
@@ -53,5 +53,8 @@ export default [
       'lucide-react',
       'clsx',
     ],
+    banner: {
+      js: "'use client'",
+    },
   }),
 ]

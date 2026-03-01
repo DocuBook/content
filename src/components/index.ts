@@ -1,3 +1,4 @@
+'use client'
 // ──────────────────────────────────────────────
 // React Components (default for backwards compatibility)
 // ──────────────────────────────────────────────
@@ -85,17 +86,17 @@ export { Checkbox, Switch, RadioGroup, RadioGroupItem, Separator } from './react
 // ──────────────────────────────────────────────
 // Theme System (cross-framework)
 // ──────────────────────────────────────────────
-export { 
-  themeTokens, 
+export {
+  themeTokens,
   componentStyles,
   cn,
-  cv 
+  cv
 } from './shared'
 
-export type { 
-  ThemeToken, 
+export type {
+  ThemeToken,
   ComponentStyle,
-  VariantConfig 
+  VariantConfig
 } from './shared'
 
 // ──────────────────────────────────────────────
