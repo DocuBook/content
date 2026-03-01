@@ -40,6 +40,10 @@ npm install lucide-svelte
 DocuBook is not a replacement for your MDX compiler; it is a **transformer** that works alongside your favorite compiler. DocuBook handles automatic component imports (auto-import) before the MDX is compiled.
 
 ### Requirement
+
+> [!NOTE]
+> **What's the difference with `next-mdx-remote`?**
+> `next-mdx-remote` compiles MDX at runtime. DocuBook (via Webpack/Vite) processes your MDX files at build-time. If you are using local MDX files, DocuBook eliminates the need to write manual imports in every file or repeatedly register components in a provider.
 You still need an MDX compiler/bundler based on your framework:
 
 ```bash
@@ -61,14 +65,6 @@ npm install @astrojs/mdx
 # For Nuxt
 npm install @nuxtjs/mdc
 ```
-
-> [!NOTE]
-> **What's the difference with `next-mdx-remote`?**
-> `next-mdx-remote` compiles MDX at runtime. DocuBook (via Webpack/Vite) processes your MDX files at build-time. If you are using local MDX files, DocuBook eliminates the need to write manual imports in every file or repeatedly register components in a provider.
-
----
-
-## ⚙️ Configuration
 
 > [!TIP]
 > DocuBook supports all major bundlers via `unplugin`. Select your bundler below to see the configuration.
@@ -143,12 +139,6 @@ export default withMDX(nextConfig);
 <details>
 <summary><b>Svelte (Vite)</b></summary>
 
-First, install `mdsvex`:
-```bash
-npm install mdsvex
-```
-
-Then configure `vite.config.ts`:
 ```typescript
 // vite.config.ts
 import { defineConfig } from 'vite';
@@ -175,12 +165,6 @@ export default defineConfig({
 <details>
 <summary><b>Astro</b></summary>
 
-First, install `@astrojs/mdx`:
-```bash
-npm install @astrojs/mdx
-```
-
-Then configure `astro.config.mjs`:
 ```javascript
 // astro.config.mjs
 import { defineConfig } from 'astro/config';
@@ -203,12 +187,6 @@ export default defineConfig({
 <details>
 <summary><b>Nuxt (Vue)</b></summary>
 
-First, install `@nuxtjs/mdc`:
-```bash
-npm install @nuxtjs/mdc
-```
-
-Then configure `nuxt.config.ts`:
 ```typescript
 // nuxt.config.ts
 export default defineNuxtConfig({
