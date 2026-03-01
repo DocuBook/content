@@ -2,7 +2,7 @@
 
 The Universal Documentation Engine for any JavaScript Framework.
 
-> Write with MDX — works with pretty much any JS framework: Vite, React, Vue, Svelte, you name it!
+> Write with MDX — works with pretty much any JS framework: React, Vue, Svelte, you name it!
 
 ## Features
 - 🚀 **Framework Agnostic**: Native support for React, Vue, and Svelte.
