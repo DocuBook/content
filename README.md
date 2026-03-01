@@ -33,200 +33,7 @@ npm install lucide-vue-next
 npm install lucide-svelte
 ```
 
-## 🎨 Theming & Customization
-
-DocuBook uses CSS variables for theming. You can override these variables to customize the appearance of components.
-
-### Quick Start
-
-> Import the DocuBook theme in your entry file (`main.ts`, `App.tsx`, etc.)
-
-```typescript
-import 'unplugin-docubook/theme.css';
-```
-
-### Override CSS Variables
-
-<details>
-<summary><b>Base Colors</b></summary>
-
-```css
-:root {
-  /* Background & Foreground */
-  --background: 210 40% 98%;
-  --foreground: 220 30% 15%;
-  
-  /* Card */
-  --card: 0 0% 100%;
-  --card-foreground: 220 30% 15%;
-  
-  /* Popover */
-  --popover: 0 0% 100%;
-  --popover-foreground: 220 30% 15%;
-}
-```
-</details>
-
-<details>
-<summary><b>Primary & Accent Colors</b></summary>
-
-```css
-:root {
-  /* Primary - main brand color */
-  --primary: 210 81% 56%;
-  --primary-foreground: 0 0% 100%;
-  
-  /* Secondary */
-  --secondary: 210 30% 90%;
-  --secondary-foreground: 220 30% 15%;
-  
-  /* Accent */
-  --accent: 200 100% 40%;
-  --accent-foreground: 0 0% 100%;
-}
-```
-</details>
-
-<details>
-<summary><b>Muted & UI Colors</b></summary>
-
-```css
-:root {
-  /* Muted */
-  --muted: 210 20% 92%;
-  --muted-foreground: 220 15% 50%;
-  
-  /* Status */
-  --destructive: 0 85% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --success: 142 70% 50%;
-  --success-foreground: 0 0% 100%;
-  
-  /* Border & Input */
-  --border: 210 20% 85%;
-  --input: 210 20% 85%;
-  --ring: 210 81% 56%;
-  
-  /* Radius */
-  --radius: 0.5rem;
-}
-```
-</details>
-
-<details>
-<summary><b>Note / Alert Variants</b></summary>
-
-```css
-:root {
-  /* Note (info) */
-  --note-bg: 214 100% 97%;
-  --note-border: 214 100% 90%;
-  --note-accent: 210 81% 56%;
-  --note-text: 220 50% 30%;
-  
-  /* Danger */
-  --danger-bg: 0 100% 97%;
-  --danger-border: 0 100% 90%;
-  --danger-accent: 0 85% 60%;
-  --danger-text: 0 50% 30%;
-  
-  /* Warning */
-  --warning-bg: 38 100% 97%;
-  --warning-border: 38 100% 90%;
-  --warning-accent: 38 100% 50%;
-  --warning-text: 38 50% 30%;
-  
-  /* Success */
-  --success-bg: 142 100% 97%;
-  --success-border: 142 100% 90%;
-  --success-accent: 142 70% 50%;
-  --success-text: 142 50% 25%;
-}
-```
-</details>
-
-<details>
-<summary><b>Dark Mode</b></summary>
-
-Override colors for dark mode by adding `.dark` class:
-
-```css
-.dark {
-  --background: 220 25% 10%;
-  --foreground: 210 30% 96%;
-  --card: 220 25% 15%;
-  --card-foreground: 210 30% 96%;
-  --primary: 210 100% 65%;
-  --primary-foreground: 220 25% 10%;
-  --accent: 200 100% 60%;
-  --muted: 215 20% 25%;
-  --muted-foreground: 215 20% 65%;
-  --border: 215 20% 25%;
-  --destructive: 0 85% 70%;
-  --success: 142 70% 55%;
-  
-  /* Note variants - dark */
-  --note-bg: 217 50% 20%;
-  --note-border: 217 50% 30%;
-  --note-text: 210 30% 90%;
-  /* ... etc */
-}
-```
-
-> [!TIP]
-> DocuBook automatically detects dark mode via the `.dark` class on parent element (compatible with Tailwind CSS).
-</details>
-
-<details>
-<summary><b>Shadows & Animations</b></summary>
-
-```css
-:root {
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  
-  /* Animations */
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-}
-```
-</details>
-
 ---
-
-## 🚀 Usage
-
-### MDX Content
-No imports needed for core components!
-
-```mdx
-<Accordion title="Getting Started">
-  <Note type="success">
-    Docubook is now managing your imports.
-  </Note>
-  
-  <Card title="Quick Link" icon="zap">
-    Check our docs.
-  </Card>
-</Accordion>
-```
-
-### Custom Components
-You can register your own components (project-specific or external) for auto-import:
-
-```typescript
-DocuBook({
-  customComponents: {
-    // Relative path (to unplugin-docubook/components)
-    MyWidget: { exports: ['MyWidget'], path: '/custom' },
-    
-    // Absolute/Alias path (to your project)
-    SpecialButton: { exports: ['Button'], path: '@/components/ui/Button' }
-  }
-})
-```
 
 ## 🔌 Integration
 
@@ -435,6 +242,201 @@ export default defineNuxtConfig({
 
 Import from `unplugin-docubook/webpack` or `unplugin-docubook/rollup` and add to your plugins array.
 </details>
+
+---
+
+## 🎨 Theming & Customization
+
+DocuBook uses CSS variables for theming. You can override these variables to customize the appearance of components.
+
+### Quick Start
+
+> [!NOTE]
+> Import the DocuBook theme in your entry file (`main.ts`, `App.tsx`, etc.)
+
+```typescript
+import 'unplugin-docubook/theme.css';
+```
+
+### Override CSS Variables
+
+<details>
+<summary><b>Base Colors</b></summary>
+
+```css
+:root {
+  /* Background & Foreground */
+  --background: 210 40% 98%;
+  --foreground: 220 30% 15%;
+  
+  /* Card */
+  --card: 0 0% 100%;
+  --card-foreground: 220 30% 15%;
+  
+  /* Popover */
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 30% 15%;
+}
+```
+</details>
+
+<details>
+<summary><b>Primary & Accent Colors</b></summary>
+
+```css
+:root {
+  /* Primary - main brand color */
+  --primary: 210 81% 56%;
+  --primary-foreground: 0 0% 100%;
+  
+  /* Secondary */
+  --secondary: 210 30% 90%;
+  --secondary-foreground: 220 30% 15%;
+  
+  /* Accent */
+  --accent: 200 100% 40%;
+  --accent-foreground: 0 0% 100%;
+}
+```
+</details>
+
+<details>
+<summary><b>Muted & UI Colors</b></summary>
+
+```css
+:root {
+  /* Muted */
+  --muted: 210 20% 92%;
+  --muted-foreground: 220 15% 50%;
+  
+  /* Status */
+  --destructive: 0 85% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 70% 50%;
+  --success-foreground: 0 0% 100%;
+  
+  /* Border & Input */
+  --border: 210 20% 85%;
+  --input: 210 20% 85%;
+  --ring: 210 81% 56%;
+  
+  /* Radius */
+  --radius: 0.5rem;
+}
+```
+</details>
+
+<details>
+<summary><b>Note / Alert Variants</b></summary>
+
+```css
+:root {
+  /* Note (info) */
+  --note-bg: 214 100% 97%;
+  --note-border: 214 100% 90%;
+  --note-accent: 210 81% 56%;
+  --note-text: 220 50% 30%;
+  
+  /* Danger */
+  --danger-bg: 0 100% 97%;
+  --danger-border: 0 100% 90%;
+  --danger-accent: 0 85% 60%;
+  --danger-text: 0 50% 30%;
+  
+  /* Warning */
+  --warning-bg: 38 100% 97%;
+  --warning-border: 38 100% 90%;
+  --warning-accent: 38 100% 50%;
+  --warning-text: 38 50% 30%;
+  
+  /* Success */
+  --success-bg: 142 100% 97%;
+  --success-border: 142 100% 90%;
+  --success-accent: 142 70% 50%;
+  --success-text: 142 50% 25%;
+}
+```
+</details>
+
+<details>
+<summary><b>Dark Mode</b></summary>
+
+Override colors for dark mode by adding `.dark` class:
+
+```css
+.dark {
+  --background: 220 25% 10%;
+  --foreground: 210 30% 96%;
+  --card: 220 25% 15%;
+  --card-foreground: 210 30% 96%;
+  --primary: 210 100% 65%;
+  --primary-foreground: 220 25% 10%;
+  --accent: 200 100% 60%;
+  --muted: 215 20% 25%;
+  --muted-foreground: 215 20% 65%;
+  --border: 215 20% 25%;
+  --destructive: 0 85% 70%;
+  --success: 142 70% 55%;
+  
+  /* Note variants - dark */
+  --note-bg: 217 50% 20%;
+  --note-border: 217 50% 30%;
+  --note-text: 210 30% 90%;
+  /* ... etc */
+}
+```
+</details>
+
+<details>
+<summary><b>Shadows & Animations</b></summary>
+
+```css
+:root {
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+```
+</details>
+
+---
+
+## 🚀 Usage
+
+### MDX Content
+No imports needed for core components!
+
+```mdx
+<Accordion title="Getting Started">
+  <Note type="success">
+    Docubook is now managing your imports.
+  </Note>
+  
+  <Card title="Quick Link" icon="zap">
+    Check our docs.
+  </Card>
+</Accordion>
+```
+
+### Custom Components
+You can register your own components (project-specific or external) for auto-import:
+
+```typescript
+DocuBook({
+  customComponents: {
+    // Relative path (to unplugin-docubook/components)
+    MyWidget: { exports: ['MyWidget'], path: '/custom' },
+    
+    // Absolute/Alias path (to your project)
+    SpecialButton: { exports: ['Button'], path: '@/components/ui/Button' }
+  }
+})
+```
 
 ---
 
