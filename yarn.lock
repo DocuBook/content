@@ -5018,6 +5018,7 @@ __metadata:
     "@farmfe/core": ">=1"
     "@nuxt/kit": ^3
     "@nuxt/schema": ^3
+    bits-ui: ^1.0.0
     clsx: ">=2"
     esbuild: "*"
     lucide-react: ">=0.300"
@@ -5026,7 +5027,7 @@ __metadata:
     react: ">=18"
     react-dom: ">=18"
     rollup: ^3 || ^4
-    svelte: ">=4"
+    svelte: ^5.0.0
     tailwindcss: ">=3"
     vite: ">=3"
     vue: ">=3"
