@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte'
   import { componentStyles } from '../../shared'
   import { Info, AlertTriangle, AlertCircle, CheckCircle } from 'lucide-svelte'
 
@@ -11,10 +12,16 @@
 
   type NoteType = keyof typeof iconMap
 
-  let { type = 'note', title = 'Note', className = '' }: {
+  let { 
+    type = 'note', 
+    title = 'Note', 
+    className = '',
+    children
+  }: {
     type?: NoteType
     title?: string
     className?: string
+    children: Snippet
   } = $props()
 
   const Icon = $derived(iconMap[type])
@@ -33,7 +40,7 @@
   <div class={componentStyles.note.content}>
     <h5 class={componentStyles.note.title}>{title}</h5>
     <div class={componentStyles.note.description}>
-      <slot />
+      {@render children()}
     </div>
   </div>
 </div>

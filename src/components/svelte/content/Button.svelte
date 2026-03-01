@@ -34,8 +34,7 @@
 
 {#if href}
   {#if LinkComponent}
-    <svelte:component
-      this={LinkComponent}
+    <LinkComponent
       {href}
       {target}
       {rel}
@@ -43,7 +42,7 @@
     >
       {#if icon}{@render icon()}{/if}
       {#if text}<span>{text}</span>{/if}
-    </svelte:component>
+    </LinkComponent>
   {:else}
     <a
       {href}

@@ -59,8 +59,7 @@
       <Search class="w-8 h-8 text-white drop-shadow-md" />
     </span>
     {#if ImageComponent}
-      <svelte:component
-        this={ImageComponent}
+      <ImageComponent
         {src}
         {alt}
         {width}
@@ -95,8 +94,7 @@
 
       <div class="relative max-w-7xl w-full h-full flex items-center justify-center">
         {#if ImageComponent}
-          <svelte:component
-            this={ImageComponent}
+          <ImageComponent
             {src}
             {alt}
             width={1920}

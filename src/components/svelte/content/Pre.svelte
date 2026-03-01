@@ -1,8 +1,19 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte'
   import { componentStyles } from '../../shared'
   import { Check, Copy as CopyIcon } from 'lucide-svelte'
 
-  let { raw = '', dataTitle = '', className = '' }: { raw?: string; dataTitle?: string; className?: string } = $props()
+  let { 
+    raw = '', 
+    dataTitle = '', 
+    className = '',
+    children
+  }: { 
+    raw?: string; 
+    dataTitle?: string; 
+    className?: string;
+    children: Snippet
+  } = $props()
 
   let isCopied = $state(false)
 
@@ -42,7 +53,7 @@
   {/if}
   <div class="overflow-x-auto">
     <pre class:pr-12={hasTitle} class={className}>
-      <slot />
+      {@render children()}
     </pre>
   </div>
 </div>

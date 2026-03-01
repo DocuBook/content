@@ -1,10 +1,17 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte'
   import { componentStyles } from '../../shared'
 
-  let { version = '', date = '', className = '' }: {
+  let { 
+    version = '', 
+    date = '', 
+    className = '',
+    children
+  }: {
     version?: string
     date?: string
     className?: string
+    children: Snippet
   } = $props()
 
   type ChangeType = 'major' | 'minor' | 'patch'
@@ -18,6 +25,6 @@
     <div class={componentStyles.release.date}>{date}</div>
   {/if}
   <div class={componentStyles.release.changes}>
-    <slot />
+    {@render children()}
   </div>
 </div>

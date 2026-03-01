@@ -1,8 +1,17 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte'
   import { componentStyles } from '../../shared'
   import { getDocuBook } from '../../../adapters/svelte'
 
-  let { href = '', className = '' }: { href?: string; className?: string } = $props()
+  let { 
+    href = '', 
+    className = '',
+    children
+  }: { 
+    href?: string; 
+    className?: string 
+    children: Snippet
+  } = $props()
 
   let LinkComponent = $derived(getDocuBook()?.Link || null)
 
@@ -14,15 +23,14 @@
 
 {#if href}
   {#if LinkComponent}
-    <svelte:component
-      this={LinkComponent}
+    <LinkComponent
       {href}
       target="_blank"
       rel="noopener noreferrer"
       class={linkClasses}
     >
-      <slot />
-    </svelte:component>
+      {@render children()}
+    </LinkComponent>
   {:else}
     <a
       {href}
@@ -30,7 +38,7 @@
       rel="noopener noreferrer"
       class={linkClasses}
     >
-      <slot />
+      {@render children()}
     </a>
   {/if}
 {/if}

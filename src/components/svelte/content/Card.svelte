@@ -1,13 +1,22 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte'
   import { componentStyles } from '../../shared'
   import { getDocuBook } from '../../../adapters/svelte'
 
-  let { title = '', href = '', horizontal = false, icon = '', className = '' }: {
+  let { 
+    title = '', 
+    href = '', 
+    horizontal = false, 
+    iconSnippet, 
+    className = '',
+    children
+  }: {
     title?: string
     href?: string
     horizontal?: boolean
-    icon?: string
+    iconSnippet?: Snippet
     className?: string
+    children?: Snippet
   } = $props()
 
   let LinkComponent = $derived(getDocuBook()?.Link || null)
@@ -21,25 +30,25 @@
 
 {#if href}
   {#if LinkComponent}
-    <svelte:component this={LinkComponent} {href} class="no-underline block">
+    <LinkComponent {href} class="no-underline block">
       <div class={containerClass}>
-        <slot name="icon" />
+        {#if iconSnippet}{@render iconSnippet()}{/if}
         <div class="flex-1 min-w-0 my-auto h-full">
           <span class="text-base font-semibold text-foreground">{title}</span>
           <div class="text-sm text-muted-foreground">
-            <slot />
+            {#if children}{@render children()}{/if}
           </div>
         </div>
       </div>
-    </svelte:component>
+    </LinkComponent>
   {:else}
     <a {href} class="no-underline block">
       <div class={containerClass}>
-        <slot name="icon" />
+        {#if iconSnippet}{@render iconSnippet()}{/if}
         <div class="flex-1 min-w-0 my-auto h-full">
           <span class="text-base font-semibold text-foreground">{title}</span>
           <div class="text-sm text-muted-foreground">
-            <slot />
+            {#if children}{@render children()}{/if}
           </div>
         </div>
       </div>
@@ -47,11 +56,11 @@
   {/if}
 {:else}
   <div class={containerClass}>
-    <slot name="icon" />
+    {#if iconSnippet}{@render iconSnippet()}{/if}
     <div class="flex-1 min-w-0 my-auto h-full">
       <span class="text-base font-semibold text-foreground">{title}</span>
       <div class="text-sm text-muted-foreground">
-        <slot />
+        {#if children}{@render children()}{/if}
       </div>
     </div>
   </div>

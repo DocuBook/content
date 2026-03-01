@@ -1,43 +1,38 @@
-<script lang="ts" context="module">
-  import { componentStyles } from '../../shared'
-  import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../ui'
-  import { ChevronRight, File, Folder, FolderOpen } from 'lucide-svelte'
-
-  // File component
-  export function FileComponent({ name, className = '' }: { name: string; className?: string }) {
-    let isHovered = $state(false)
+<script lang="ts" module>
+  export function FileComponent({ name }: { name: string }) {
     const fileExtension = name.split('.').pop()?.toUpperCase()
 
     return {
-      isHovered,
       fileExtension
     }
   }
 
-  // Folder component
   export function FolderComponent({ 
-    name, 
     defaultOpen = true,
-    className = '' 
   }: { 
     name: string
     defaultOpen?: boolean
     className?: string 
   }) {
-    let isHovered = $state(false)
-    let isOpen = $state(defaultOpen)
-
     return {
-      isHovered,
-      isOpen
+      defaultOpen
     }
   }
 </script>
 
 <script lang="ts">
-  let { className = '' }: { className?: string } = $props()
+  import type { Snippet } from 'svelte'
+  import { componentStyles } from '../../shared'
+  
+  let { 
+    className = '',
+    children
+  }: { 
+    className?: string
+    children: Snippet
+  } = $props()
 </script>
 
 <div class={componentStyles.fileTree.base + ' ' + className}>
-  <slot />
+  {@render children()}
 </div>

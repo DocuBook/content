@@ -1,7 +1,14 @@
 <script lang="ts">
-  let { className = '' }: { className?: string } = $props()
+  import type { Snippet } from 'svelte'
+  let { 
+    className = '',
+    children
+  }: { 
+    className?: string
+    children: Snippet
+  } = $props()
 </script>
 
 <div class={'grid gap-4 ' + className}>
-  <slot />
+  {@render children()}
 </div>
