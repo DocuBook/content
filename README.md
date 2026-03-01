@@ -120,11 +120,6 @@ export default defineConfig({
 <details>
 <summary><b>Next.js (App Router / Pages Router)</b></summary>
 
-First, install the `@next/mdx` compiler:
-```bash
-npm install @next/mdx @mdx-js/loader @mdx-js/react
-```
-
 Then configure `next.config.mjs`:
 ```javascript
 // next.config.mjs
